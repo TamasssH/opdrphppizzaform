@@ -5,22 +5,22 @@
         <meta charset="UTF-8">
         <meta  name="viewport" content="width=device-width,
         initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
         <?php
 
-        //variablen maken van de gegevens
+        //variablen van de gegevens
         $fname = $lname = $adres = $place = $postcode = $date = $choice =  "";
-        $pMargherita = $pFunghi = $pMarina = $pHawai = $pQuattro = $bezorgKosten = 0;
+        $pMargherita = $pFunghi = $pMarina = $pHawai = $pQuattro = $extraKosten = 0;
         $pizzas = array();
         $pizzaPrices = array($price1=12.50,$price2=12.50,$price3=13.95,$price4=11.50,$price5=14.50);
         $pizzaNames = array("Pizza Margherita","Pizza Funghi","Pizza Marina","Pizza Hawai","Pizza Quattro formaggi");
         $totalPrice = array();
-
-        //error messages
-        $fnameErr = $lnameErr = $adresErr = $placeErr = $postcodeErr = $dateErr = $pizzaErr = $choiceErr = "";
+        //(error) messages
+        $fnameErr = $lnameErr = $adresErr = $placeErr = $postcodeErr = $dateErr = $pizzaErr = $choiceErr = $dailyMsg = "";
     
-        // de functie die ervoor zorgt dat de data wordt veilig gemaakt.
+        // de functie die ervoor zorgt dat de data van de user wordt getest.
         function test_input($data) {
             $data = trim($data);
             $data = stripslashes($data);
@@ -29,11 +29,21 @@
         }
         
         /*check voor als de post method word gebruikt
-        en als die wordt gebruitk dan excuteer de 
+        en als die wordt gebruikt dan excuteer de 
         test_input function zodat de data geen speciale characters bevat.
+        Daarna wordt de user data stored in n hoop variables.
+        Er wordt ook gechecked op speciale chars met regular expression
         */ 
         if (isset($_POST["submit"])) {
             phpinfo(INFO_VARIABLES);
+
+            $pMargherita = floatval($_POST["pMargherita"]);
+            $pFunghi = floatval($_POST["pFunghi"]);
+            $pMarina = floatval($_POST["pMarina"]);
+            $pHawai = floatval($_POST["pHawai"]);
+            $pQuattro = floatval($_POST["pQuattro"]);
+            array_push($pizzas, $pMargherita,$pFunghi,$pMarina,$pHawai,$pQuattro);
+
             if (empty($_POST["fname"])){
                 $fnameErr = "Vul uw naam in alstublieft.";
             }else {
@@ -75,24 +85,23 @@
             }else {
                 $date = test_input($_POST["date"]);
             }
-            if (empty($_POST["pizzas[]"]) == false) {
-                $pizzaErr = "Je moet tenminste 1 pizza bestellen!";
-            }else {
-                $pMargherita = floatval($_POST["pMargherita"]);
-                $pFunghi = floatval($_POST["pFunghi"]);
-                $pMarina = floatval($_POST["pMarina"]);
-                $pHawai = floatval($_POST["pHawai"]);
-                $pQuattro = floatval($_POST["pQuattro"]);
-
-                array_push($pizzas, $pMargherita,$pFunghi,$pMarina,$pHawai,$pQuattro);
-
+            //check for maandagen 
+            if(date("D") == "Mon") {
+                foreach($pizzas as $value) {
+                    $value = 7.50;
+                }
             }
-            if (!isset($_POST["choice"])) {
+
+            if (array_sum($pizzas) == 0) {
+                $pizzaErr = "Je moet tenminste 1 pizza bestellen!";
+            }
+            
+            if ($_POST["choice"] == "none") {
                 $choiceErr = "Je moet kiezen tussen afhalen of laten bezorgen.";
 
             }else if($_POST["choice"] == "bezorgen"){
                 $choice = test_input($_POST["choice"]);
-                $bezorgKosten =+ 5;
+                $extraKosten =+ 5;
 
             }else {
                 $choice = test_input($_POST["choice"]);
@@ -102,50 +111,44 @@
             
         ?>
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <span class="dialyMsg"> <?php echo $dailyMsg ?></span>
 
             Enter your first name: <input type="text" name="fname"/>
-            <span>* <?php echo $fnameErr; ?></span><br />
+            <span class="errorMsg">* <?php echo $fnameErr; ?></span><br />
 
             Enter your last name: <input type="text" name="lname"/>
-            <span>* <?php echo $lnameErr; ?></span><br />
+            <span class="errorMsg">* <?php echo $lnameErr; ?></span><br />
 
             Enter your adres: <input type="text" name="adres"/>
-            <span>* <?php echo $adresErr; ?></span><br />
+            <span class="errorMsg">* <?php echo $adresErr; ?></span><br />
 
             Enter your place: <input type="text" name="place"/>
-            <span>* <?php echo $placeErr; ?></span><br />
+            <span class="errorMsg">* <?php echo $placeErr; ?></span><br />
 
             Enter your postal code: <input type="text" name="postcode"/>
-            <span>* <?php echo $postcodeErr; ?></span><br />
+            <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
 
-            Enter your order date: <input type="text" name="date"/>
-            <span>* <?php echo $dateErr; ?></span><br />
+            Enter your order date: <input type="text" name="date" placeholder="dd-mm-yy"/>
+            <span class="errorMsg">* <?php echo $dateErr; ?></span><br />
 
             order or pick up: <select name="choice" placeholder="select your choice" required>
-                <option selected>Kiez een optie.</option>
+                <option value="none" selected>Kiez een optie.</option>
                 <option value="Afhalen" >Afhalen.</option>
                 <option value="bezorgen">Laten bezorgen.</option>
             </select>
-            <span>* <?php echo $choiceErr; ?></span><br />
+            <span class="errorMsg">* <?php echo $choiceErr; ?></span><br />
             
             <br /><br />
 
                 <fieldset name="pizzas">
+                    <span class="errorMsg">* <?php echo "$pizzaErr"; ?></span><br />
                     <legend>Pizzas die je kunt bestellen.</legend>
+
                     <p>Pizza margherita €12.50</p><input type="number" name="pMargherita" min="1" max="10">
-                    <span>* <?php echo $pizzaErr; ?></span><br />
-
                     <p>pizza Funghi €12,50</p><input type="number" name="pFunghi" min="1" max="10">
-                    <span>* <?php echo $pizzaErr; ?></span><br />
-
                     <p>pizza Marina €13,95</p><input type="number" name="pMarina" min="1" max="10">
-                    <span>* <?php echo $pizzaErr; ?></span><br />
-
                     <p>pizza Hawai €11,50</p><input type="number" name="pHawai" min="1" max="10">
-                    <span>* <?php echo $pizzaErr; ?></span><br />
-
                     <p>pizza Quattro Formaggi €14,50</p><input type="number" name="pQuattro" min="1" max="10">
-                    <span>* <?php echo $pizzaErr; ?></span><br />
                 </fieldset>    
 
             <input type="submit" name="submit" value="Besteld"/><br />
@@ -175,8 +178,8 @@
                 echo  "€".$pizzas[$i]."<br>";
                 array_push($totalPrice,$pizzas[$i]);
             }
-            echo "<p>Uw totaal bedrag: </p>"."€".array_sum($totalPrice) + $bezorgKosten;
-            echo "<p>Extra bezorg kosten: </p>"."€".$bezorgKosten;
+            echo "<p>Uw totaal bedrag: </p>"."€".array_sum($totalPrice) + $extraKosten." (+ €$extraKosten Extra bezorg kosten)";
+            
         ?>
     </body>
 </html>
