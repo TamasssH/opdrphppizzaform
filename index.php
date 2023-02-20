@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta  name="viewport" content="width=device-width,
         initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" type="text/css" href="style.css?t=1"> 
     </head>
     <body>
         <?php
@@ -17,8 +17,8 @@
         $pizzaPrices = array($price1=12.50,$price2=12.50,$price3=13.95,$price4=11.50,$price5=14.50);
         $pizzaNames = array("Pizza Margherita","Pizza Funghi","Pizza Marina","Pizza Hawai","Pizza Quattro formaggi");
         $totalPrice = array();
-        //(error) messages
-        $nameErr = $adresErr = $placeErr = $postcodeErr = $dateErr = $pizzaErr = $choiceErr = $dailyMsg = "";
+        //(error) messages + extra messages
+        $nameErr = $adresErr = $placeErr = $postcodeErr = $dateErr = $pizzaErr = $choiceErr = $dailyMsg = $extraMsg = "";
     
         // de functie die ervoor zorgt dat de data van de user wordt getest.
         function test_input($data) {
@@ -70,16 +70,24 @@
             }else {
                 $date = test_input($_POST["date"]);
                 //check for maandagen en doe bonus prijzen als t maandag is.
-                if(date('N') == 1) {
-                    $dailyMsg = "<p>Het is pizza actie dag, alle pizza's nu voor maar €7.50 per stuk!</p>";
+                if(date('N') == 2) {
+                    $dailyMsg = "Het is pizza actie dag, alle pizza's nu voor maar €7.50 per stuk!";
                     $pizzaPrices = array_fill(0,5,7.50);
                         //was eerst de code ik laat het hier omdat de code erboven mischien niet werkt.
                         //for($i=0;count($pizzaPrices)>$i;$i++) {
                         //    $pizzaPrices[$i] = 7.50;
                         //}
+                }else if(date('N') == 1){
+                    $dailyMsg = "Het is pizza start weekend dag, alle bestellingen boven de €20 krijgen nu 15% korting!";
+                    
+                    if(array_sum($pizzaPrices) > 20) {
+                        $totaalBedrag = array_sum($pizzaPrices) / 100 * 15;
+                        
+                    }
+                    
                 }
             }
-            
+            //check of de bezorg keuze geselecteerd is. zo niet dan errormessage. check welke van de 2 keuzes zijn geselecteerd.
             if ($_POST["choice"] == "none") {
                 $choiceErr = "Je moet kiezen tussen afhalen of laten bezorgen.";
 
@@ -94,6 +102,7 @@
                 $extraMsg = "";
             }
 
+            //check voor als er helemaal geen pizza's zijn besteld (zolang niet alle pizza's 0 zijn is t prima).
             if (array_sum($pizzas) == 0) {
                 $pizzaErr = "Je moet tenminste 1 pizza bestellen!";
             }
@@ -103,27 +112,27 @@
         ?>
 
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <span class="dailyMsg"> <?php echo $dailyMsg ?></span>
+            <span class="dailyMsg"> <?php echo $dailyMsg; ?></span><br />
 
-            Enter your first name: <input type="text" name="fname"/>
+            Uw naam: <input type="text" name="fname"/>
             <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
 
-            Enter your last name: <input type="text" name="lname"/>
+            Uw achternaam: <input type="text" name="lname"/>
             <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
 
-            Enter your adres: <input type="text" name="adres"/>
+            Uw adres: <input type="text" name="adres"/>
             <span class="errorMsg">* <?php echo $adresErr; ?></span><br />
 
-            Enter your place: <input type="text" name="place"/>
+            Uw plaatsnaam: <input type="text" name="place"/>
             <span class="errorMsg">* <?php echo $placeErr; ?></span><br />
 
-            Enter your postal code: <input type="text" name="postcode"/>
+            Uw postcode: <input type="text" name="postcode"/>
             <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
 
-            Enter your order date: <input type="text" name="date" placeholder="dd-mm-yy"/>
+            Uw besteldatum: <input type="text" name="date" placeholder="dd-mm-yy"/>
             <span class="errorMsg">* <?php echo $dateErr; ?></span><br />
 
-            order or pick up: <select name="choice" placeholder="select your choice" required>
+            Kiez tussen bezorgen of ophalen: <select name="choice" placeholder="select your choice" required>
                 <option value="none" selected>Kiez een optie.</option>
                 <option value="Afhalen" >Afhalen.</option>
                 <option value="bezorgen">Laten bezorgen.</option>
@@ -171,7 +180,8 @@
                 echo  "€".$pizzas[$i]."<br>";
                 array_push($totalPrice,$pizzas[$i]);
             }
-            echo "<p>Uw totaal bedrag: </p>"."€".array_sum($totalPrice) + $extraKosten." (€$extraKosten $extraMsg)";
+            $totaalBedrag  = array_sum($totalPrice);
+            echo "<p>Uw totaal bedrag: </p>"."€".$totaalBedrag + $extraKosten." (€$extraKosten $extraMsg)";
             
         ?>
     </body>
