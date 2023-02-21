@@ -70,14 +70,14 @@
             }else {
                 $date = test_input($_POST["date"]);
                 //check for maandagen en doe bonus prijzen als t maandag is.
-                if(date('N') == 2) {
+                if(date('N') == 1) {
                     $dailyMsg = "Het is pizza actie dag, alle pizza's nu voor maar €7.50 per stuk!";
                     $pizzaPrices = array_fill(0,5,7.50);
                         //was eerst de code ik laat het hier omdat de code erboven mischien niet werkt.
                         //for($i=0;count($pizzaPrices)>$i;$i++) {
                         //    $pizzaPrices[$i] = 7.50;
                         //}
-                }else if(date('N') == 1){
+                }else if(date('N') == 2){
                     $dailyMsg = "Het is pizza start weekend dag, alle bestellingen boven de €20 krijgen nu 15% korting!";
                     
                     if(array_sum($pizzaPrices) > 20) {
@@ -129,7 +129,7 @@
             Uw postcode: <input type="text" name="postcode"/>
             <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
 
-            Uw besteldatum: <input type="text" name="date" placeholder="dd-mm-yy"/>
+            Uw besteldatum: <input type="text" name="date" value="<?php echo date('Y-m-d'); ?>"/>
             <span class="errorMsg">* <?php echo $dateErr; ?></span><br />
 
             Kiez tussen bezorgen of ophalen: <select name="choice" placeholder="select your choice" required>
