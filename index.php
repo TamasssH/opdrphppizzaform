@@ -132,8 +132,8 @@
                     <p>Pizza margherita €12.50</p><input type="number" name="pMargherita" min="0" max="10" value="<?php if(isset($_POST['pMargherita'])) echo htmlspecialchars($_POST['pMargherita']); ?>">
                     <p>pizza Funghi €12,50</p><input type="number" name="pFunghi" min="0" max="10" value="<?php if(isset($_POST['pFunghi'])) echo htmlspecialchars($_POST['pFunghi']); ?>">
                     <p>pizza Marina €13,95</p><input type="number" name="pMarina" min="0" max="10" value="<?php if(isset($_POST['pMarina'])) echo htmlspecialchars($_POST['pMarina']); ?>">
-                    <p>pizza Hawai €11,50</p><input type="number" name="pHawai" min="0" max="10" <?php if(isset($_POST['pHawai'])) echo htmlspecialchars($_POST['pHawai']); ?>>
-                    <p>pizza Quattro Formaggi €14,50</p><input type="number" name="pQuattro" min="1" max="10" <?php if(isset($_POST['pQuattro'])) echo htmlspecialchars($_POST['pQuattro']); ?>>
+                    <p>pizza Hawai €11,50</p><input type="number" name="pHawai" min="0" max="10" value="<?php if(isset($_POST['pHawai'])) echo htmlspecialchars($_POST['pHawai']); ?>">
+                    <p>pizza Quattro Formaggi €14,50</p><input type="number" name="pQuattro" min="0" max="10" value="<?php if(isset($_POST['pQuattro'])) echo htmlspecialchars($_POST['pQuattro']); ?>">
                 </fieldset>    
             <input type="submit" name="submit" value="Besteld"/><br />
             <div class="gegevens">
