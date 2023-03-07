@@ -6,7 +6,7 @@
         $pizzaPrices = array($price1=12.50,$price2=12.50,$price3=13.95,$price4=11.50,$price5=14.50);
         $pizzaNames = array("Pizza Margherita","Pizza Funghi","Pizza Marina","Pizza Hawai","Pizza Quattro formaggi");
         $totalPrice = array();
-        $currentDate = date('N');
+        $day = date('D');
         //(error) messages + extra messages
         $nameErr = $adresErr = $placeErr = $postcodeErr = $dateErr = $pizzaErr = $choiceErr = $dailyMsg = $extraMsg = "";
         //$currentDate = date('d-m-Y h:i:');
@@ -76,10 +76,10 @@
                 $choiceErr = "Kiez tussen laten bezorgen of ophalen in alstublieft.";
             }else if ($choice == "bezorgen") {
                 $extraKosten =+ 5;
-                $extraMsg = "extra bezorg kosten: ";
+                $extraMsg = "extra bezorg kosten";
             }else {
                 $extraKosten = 0;
-                $extraMsg = "extra bezorg kosten: ";
+                $extraMsg = "extra bezorg kosten";
             }
             //check voor als alle hoeveelheden van de verschillende pizza's niet 0 zijn, want dat betekent dat er niks besteld is.
             if (array_sum($pizzas) == 0) {
@@ -154,7 +154,7 @@
                     echo "<p>Uw bestelde pizza's: </p>";
                     for ($i=0;count($pizzas)>$i;$i++) {
                         if ($pizzas[$i] > 0) {
-                            if ($currentDate == 1) {
+                            if ($day == "Mon") {
                                 $dailyMsg = "Het is pizza actie dag wow epic.";
                                 echo $pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
                                 array_fill_keys($pizzaPrices,7.50);
@@ -162,7 +162,7 @@
                                 echo  "€".$pizzas[$i]."<br>";
                                 array_push($totalPrice,$pizzas[$i]);
 
-                            }else if ($currentDate == 5) {
+                            }else if ($day == "Fri") {
                                 $dailyMsg = "Dikke pizza vrijdag jooooo!!!";
                                 echo $pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
                                 $pizzas[$i] *= $pizzaPrices[$i];
