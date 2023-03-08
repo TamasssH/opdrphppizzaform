@@ -84,9 +84,9 @@
             //check voor als alle hoeveelheden van de verschillende pizza's niet 0 zijn, want dat betekent dat er niks besteld is.
             if (array_sum($pizzas) == 0) {
                 $pizzaErr = "Je moet tenminste 1 pizza bestellen!";
-                }
             }
-        ?>
+        }
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -97,7 +97,25 @@
         <link rel="stylesheet" type="text/css" href="style.css?t=1"> 
     </head>
     <body>
-        
+        <fieldset>
+            <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
+            <legend>Pizzas die je kunt bestellen.</legend>
+                <p>Pizza margherita €12.50</p><input type="number" name="pMargherita" min="0" max="10" value="
+                <?php if(isset($_POST['pMargherita'])) echo htmlspecialchars($_POST['pMargherita']); ?>">
+
+                <p>pizza Funghi €12,50</p><input type="number" name="pFunghi" min="0" max="10" value="
+                <?php if(isset($_POST['pFunghi'])) echo htmlspecialchars($_POST['pFunghi']); ?>">
+
+                <p>pizza Marina €13,95</p><input type="number" name="pMarina" min="0" max="10" value="
+                <?php if(isset($_POST['pMarina'])) echo htmlspecialchars($_POST['pMarina']); ?>">
+
+                <p>pizza Hawai €11,50</p><input type="number" name="pHawai" min="0" max="10" value="
+                <?php if(isset($_POST['pHawai'])) echo htmlspecialchars($_POST['pHawai']); ?>">
+                    
+                <p>pizza Quattro Formaggi €14,50</p><input type="number" name="pQuattro" min="0" max="10" value="
+                <?php if(isset($_POST['pQuattro'])) echo htmlspecialchars($_POST['pQuattro']); ?>">
+        </fieldset>
+
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <span class="dailyMsg"> <?php echo $dailyMsg; ?></span><br />
             <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
@@ -125,17 +143,8 @@
                 <option value="bezorgen">Laten bezorgen.</option>
             </select>
             <span class="errorMsg">* <?php echo $choiceErr; ?></span><br />
-            <br /><br />
-                <fieldset name="pizzas">
-                    <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
-                    <legend>Pizzas die je kunt bestellen.</legend>
-                    <p>Pizza margherita €12.50</p><input type="number" name="pMargherita" min="0" max="10" value="<?php if(isset($_POST['pMargherita'])) echo htmlspecialchars($_POST['pMargherita']); ?>">
-                    <p>pizza Funghi €12,50</p><input type="number" name="pFunghi" min="0" max="10" value="<?php if(isset($_POST['pFunghi'])) echo htmlspecialchars($_POST['pFunghi']); ?>">
-                    <p>pizza Marina €13,95</p><input type="number" name="pMarina" min="0" max="10" value="<?php if(isset($_POST['pMarina'])) echo htmlspecialchars($_POST['pMarina']); ?>">
-                    <p>pizza Hawai €11,50</p><input type="number" name="pHawai" min="0" max="10" value="<?php if(isset($_POST['pHawai'])) echo htmlspecialchars($_POST['pHawai']); ?>">
-                    <p>pizza Quattro Formaggi €14,50</p><input type="number" name="pQuattro" min="0" max="10" value="<?php if(isset($_POST['pQuattro'])) echo htmlspecialchars($_POST['pQuattro']); ?>">
-                </fieldset>    
-            <input type="submit" name="submit" value="Besteld"/><br />
+            <br />
+            <input type="submit" name="submit" value="Bestellen"/><br />
             <div class="gegevens">
                 <?php
 
