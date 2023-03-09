@@ -24,7 +24,7 @@
         Daarna wordt de user data stored in n hoop variables.
         Er wordt ook gechecked op speciale chars met regular expression
         */ 
-        if ($_POST && isset($_POST["submit"], $_POST["fname"], $_POST["lname"], $_POST["adres"], $_POST["place"], $_POST["postcode"], $_POST["date"], $_POST["choice"])) {
+        if (isset($_POST["submit"])) {
             phpinfo(INFO_VARIABLES);
 
             //de variablen opslaan.
@@ -97,26 +97,21 @@
         <link rel="stylesheet" type="text/css" href="style.css?t=1"> 
     </head>
     <body>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <fieldset>
             <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
             <legend>Pizzas die je kunt bestellen.</legend>
-                <p>Pizza margherita €12.50</p><input type="number" name="pMargherita" min="0" max="10" value="
-                <?php if(isset($_POST['pMargherita'])) echo htmlspecialchars($_POST['pMargherita']); ?>">
-
-                <p>pizza Funghi €12,50</p><input type="number" name="pFunghi" min="0" max="10" value="
-                <?php if(isset($_POST['pFunghi'])) echo htmlspecialchars($_POST['pFunghi']); ?>">
-
-                <p>pizza Marina €13,95</p><input type="number" name="pMarina" min="0" max="10" value="
-                <?php if(isset($_POST['pMarina'])) echo htmlspecialchars($_POST['pMarina']); ?>">
-
-                <p>pizza Hawai €11,50</p><input type="number" name="pHawai" min="0" max="10" value="
-                <?php if(isset($_POST['pHawai'])) echo htmlspecialchars($_POST['pHawai']); ?>">
-                    
-                <p>pizza Quattro Formaggi €14,50</p><input type="number" name="pQuattro" min="0" max="10" value="
-                <?php if(isset($_POST['pQuattro'])) echo htmlspecialchars($_POST['pQuattro']); ?>">
+                <p>Pizza margherita €12.50</p><input type="number" name="pMargherita" min="0" max="10" 
+                value="<?php echo $pMargherita; ?>">            
+                <p>pizza Funghi €12,50</p><input type="number" name="pFunghi" min="0" max="10" 
+                value="<?php echo $pFunghi; ?>">
+                <p>pizza Marina €13,95</p><input type="number" name="pMarina" min="0" max="10" 
+                value="<?php echo $pMarina; ?>">
+                <p>pizza Hawai €11,50</p><input type="number" name="pHawai" min="0" max="10" 
+                value="<?php echo $pHawai ?>">
+                <p>pizza Quattro Formaggi €14,50</p><input type="number" name="pQuattro" min="0" max="10" 
+                value="<?php echo $pQuattro ?>">
         </fieldset>
-
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <span class="dailyMsg"> <?php echo $dailyMsg; ?></span><br />
             <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
             Uw naam: 
@@ -134,7 +129,7 @@
             <input type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
             <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
             Uw besteldatum: 
-            <input type="datetime-local" name="date" min="" value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
+            <input type="datetime-local" name="date" value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
             <span class="errorMsg">* <?php echo $dateErr; ?></span><br />
             Kiez tussen bezorgen of ophalen: 
             <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
@@ -147,7 +142,7 @@
             <input type="submit" name="submit" value="Bestellen"/><br />
             <div class="gegevens">
                 <?php
-
+            
                     //De gegevens van de user uitprinten.
                     echo "<h2>Uw gegevens: </h2>";
                     echo "<p>Uw voornaam: $fname</p>";
