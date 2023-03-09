@@ -22,7 +22,7 @@
         en als die wordt gebruikt dan excuteer de 
         test_input function zodat de data geen speciale characters bevat.
         Daarna wordt de user data stored in n hoop variables.
-        Er wordt ook gechecked op speciale chars met regular expression
+        Er wordt ook gechecked op speciale chars met regular expressions
         */ 
         if (isset($_POST["submit"])) {
             phpinfo(INFO_VARIABLES);
@@ -87,10 +87,8 @@
             }
             if ($day == "Mon") {
                 $dailyMsg = "Het is pizza actie dag wow epic.";
-                array_fill_keys($pizzaPrices,7.50);
             }else if ($day == "Thu") {
                 $dailyMsg = "Het is pizza start weekend dag idk.";
-                array_fill_keys($pizzaPrices,7.50);
                 
             }
         }
@@ -165,24 +163,22 @@
                     //check voor welke dag het is en bereken de korting uit.
                     echo "<p>Uw bestelde pizza's: </p>";
                     for ($i=0;count($pizzas)>$i;$i++) {
-                        if ($day == "Thu" && $pizzas[$i] > 0) {
-                            echo "test ";
+                        if ($day == "Mon" && $pizzas[$i] > 0) {
                             echo $pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
-                            $pizzas[$i] *= $pizzaPrices[$i];
+                            $pizzas[$i] *= 7.50;
                             echo  "€".$pizzas[$i]."<br>";
                             array_push($totalPrice,$pizzas[$i]);
 
-                            }else if ($day == "Fri" && $pizzas[$i] > 0) {
-                                echo "test ";
-                                $dailyMsg = "Dikke pizza vrijdag jooooo!!!";
+                            }else if ($day == "Thu" && $pizzas[$i] > 0) {
                                 echo $pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
                                 $pizzas[$i] *= $pizzaPrices[$i];
                                 array_push($totalPrice,$pizzas[$i]);
                             if (array_sum($totalPrice) > 20) {
                                 $totalPrice[$i] / 100 * 15;
                                 }
+                                echo "€".$pizzas[$i]."<br>";
                                 
-                            }else if ($pizzas[$i] > 0) {
+                            }else if ($day != "Thu" && $day != "Fri" && $pizzas[$i] > 0) {
                                 echo $pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
                                 $pizzas[$i] *= $pizzaPrices[$i];
                                 echo  "€".$pizzas[$i]."<br>";
