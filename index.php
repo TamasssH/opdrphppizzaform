@@ -184,7 +184,7 @@
                                 $pizzas[$i] *= $pizzaPrices[$i];
                                 echo  "€".$pizzas[$i]."<br>";
                                 array_push($totalPrice,$pizzas[$i]);
-                                
+                                echo "bababooey";
                             }
 
                     }
