@@ -45,39 +45,24 @@
             $pQuattro = floatval($_POST["pQuattro"]);
             array_push($pizzas, $pMargherita,$pFunghi,$pMarina,$pHawai,$pQuattro);
 
-            //Check of de invoer velden niet leeg zijn nadat de form submitted is.
             if (!$fname || !$lname){
                 $nameErr = "Vul uw naam en achternaam in alstublieft.";
             }else if (!preg_match("/^[a-zA-Z-' ]*$/",$fname) || !preg_match("/^[a-zA-Z-' ]*$/",$lname)) {
                 $nameErr = "alleen letters en wit regels toegestaan!";
             }
-            
-            //kijk of alle invulvelden wel een value hebben, anders geef een error message.
-            switch ($_POST) {
-                case !$adres:
-                    $adresErr = "Vul uw adres in alstublieft";
-                    break;
-                case !$place:
-                    $placeErr = "Vul uw plaatsnaam in alstublieft."; 
-                    break;
-                case !$postcode:
-                    $postcodeErr = "Vul uw postcode in alstublieft.";
-                    break;
-                case !$date:
-                    $dateErr = "Vul uw adres in alstublieft";
-                    break;
-                case $choice == "none":
-                    $choiceErr = "Kies tussen laten bezorgen of ophalen in alstublieft.";
-                    break;
-                case $choice == "bezorgen":
-                    $extraKosten =+ 5;
-                    $extraMsg = "extra bezorg kosten";
-                    break;
-                case $choice != "none" && "bezorgen":
-                    $extraKosten = 0;
-                    $extraMsg = "extra bezorg kosten";
-            };
-            
+            $adresErr = !$adres ? "Vul uw adres in alstublieft" : "";
+            $placeErr = !$place ? "Vul uw plaatsnaam in alstublieft" : "";
+            $postcodeErr = !$postcode ? "Vul uw postcode in alstublieft." : "";
+            $dateErr = !$date ? "Vul uw datum in alstublieft." : "";
+            if ($choice == "none") {
+                $choiceErr = "Kiez tussen laten bezorgen of ophalen in alstublieft.";
+            }else if ($choice == "bezorgen") {
+                $extraKosten =+ 5;
+                $extraMsg = "extra bezorg kosten";
+            }else {
+                $extraKosten = 0;
+                $extraMsg = "extra bezorg kosten";
+            }
             //check voor als alle hoeveelheden van de verschillende pizza's niet 0 zijn, want dat betekent dat er niks besteld is.
             if (array_sum($pizzas) == 0) {
                 $pizzaErr = "Je moet tenminste 1 pizza bestellen!";
