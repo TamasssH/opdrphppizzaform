@@ -10,6 +10,7 @@
         //(error) messages + extra messages
         $nameErr = $adresErr = $placeErr = $postcodeErr = $dateErr = $pizzaErr = $choiceErr = $dailyMsg = $extraMsg = "";
         //$currentDate = date('d-m-Y h:i:');
+
         // de functie die ervoor zorgt dat de data van de user wordt getest.
         function test_input($data) {
             $data = trim($data);
@@ -86,9 +87,9 @@
                 $pizzaErr = "Je moet tenminste 1 pizza bestellen!";
             }
             if ($day == "Mon") {
-                $dailyMsg = "Het is pizza actie dag wow epic.";
-            }else if ($day == "Thu") {
-                $dailyMsg = "Het is pizza start weekend dag idk.";
+                $dailyMsg = "Het is pizza actie dag. alle pizza's nu voor maar €7.50!";
+            }else if ($day == "Fri") {
+                $dailyMsg = "Het is pizza start weekend dag. Alle bestelling boven de €20 krijgen 15% korting!";
                 
             }
         }
@@ -108,15 +109,15 @@
             <span class="dailyMsg"><?php echo $dailyMsg; ?></span><br />
             <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
             <legend>Pizzas die je kunt bestellen.</legend>
-                <p>Pizza margherita €12.50</p><input type="number" name="pMargherita" min="0" max="10" 
+                <p>Pizza margherita <?php echo "€".$pizzaPrices[0] ?></p><input type="number" name="pMargherita" min="0" max="10" 
                 value="<?php echo $pMargherita; ?>">            
-                <p>pizza Funghi €12,50</p><input type="number" name="pFunghi" min="0" max="10" 
+                <p>pizza Funghi <?php echo "€".$pizzaPrices[1] ?></p><input type="number" name="pFunghi" min="0" max="10" 
                 value="<?php echo $pFunghi; ?>">
-                <p>pizza Marina €13,95</p><input type="number" name="pMarina" min="0" max="10" 
+                <p>pizza Marina <?php echo "€".$pizzaPrices[2] ?></p><input type="number" name="pMarina" min="0" max="10" 
                 value="<?php echo $pMarina; ?>">
-                <p>pizza Hawai €11,50</p><input type="number" name="pHawai" min="0" max="10" 
+                <p>pizza Hawai <?php echo "€".$pizzaPrices[3] ?></p><input type="number" name="pHawai" min="0" max="10" 
                 value="<?php echo $pHawai ?>">
-                <p>pizza Quattro Formaggi €14,50</p><input type="number" name="pQuattro" min="0" max="10" 
+                <p>pizza Quattro Formaggi <?php echo "€".$pizzaPrices[4] ?></p><input type="number" name="pQuattro" min="0" max="10" 
                 value="<?php echo $pQuattro ?>">
         </fieldset>
             <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
@@ -135,7 +136,7 @@
             <input type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
             <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
             Uw besteldatum: 
-            <input type="datetime-local" name="date" value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
+            <input type="datetime-local" name="date"  value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
             <span class="errorMsg">* <?php echo $dateErr; ?></span><br />
             Kiez tussen bezorgen of ophalen: 
             <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
@@ -169,7 +170,7 @@
                             echo  "€".$pizzas[$i]."<br>";
                             array_push($totalPrice,$pizzas[$i]);
 
-                            }else if ($day == "Thu" && $pizzas[$i] > 0) {
+                            }else if ($day == "Fri" && $pizzas[$i] > 0) {
                                 echo $pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
                                 $pizzas[$i] *= $pizzaPrices[$i];
                                 array_push($totalPrice,$pizzas[$i]);
@@ -178,7 +179,7 @@
                                 }
                                 echo "€".$pizzas[$i]."<br>";
                                 
-                            }else if ($day != "Thu" && $day != "Fri" && $pizzas[$i] > 0) {
+                            }else if ($day != "Mon" && $day != "Fri" && $pizzas[$i] > 0) {
                                 echo $pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
                                 $pizzas[$i] *= $pizzaPrices[$i];
                                 echo  "€".$pizzas[$i]."<br>";
