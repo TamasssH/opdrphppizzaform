@@ -143,6 +143,7 @@
 
                     //print de hoeveelheid van elke pizza * de prijs van elke pizza uit en print de bijbehorende naam.
                     //check voor welke dag het is en bereken de korting uit.
+                    
                     echo "<p>Uw bestelde pizza's: </p>";
                     for ($i=0;count($pizzas)>$i;$i++) {
                         if ($day == "Mon" && $pizzas[$i] > 0) {
@@ -166,12 +167,13 @@
                                 echo  "€".$pizzas[$i]."<br>";
                                 array_push($totalPrice,$pizzas[$i]);
                             }
-                    }
-                    $totaalBedrag  = array_sum($totalPrice);
-                    echo "<p>Uw totaal bedrag: </p>"."€".$totaalBedrag + $extraKosten; 
-                    if ($extraKosten > 0) {
-                        echo " (+ €$extraKosten $extraMsg)";
-                    }
+                        }
+                        $totaalBedrag  = array_sum($totalPrice);
+                        echo "<p>Uw totaal bedrag: </p>"."€".$totaalBedrag + $extraKosten; 
+                        if ($extraKosten > 0) {
+                            echo " (+ €$extraKosten $extraMsg)";
+                        }
+                    
                 ?>
         </form>
         
