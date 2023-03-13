@@ -45,34 +45,15 @@
             $pQuattro = floatval($_POST["pQuattro"]);
             array_push($pizzas, $pMargherita,$pFunghi,$pMarina,$pHawai,$pQuattro);
 
-            //Check of de invoer velden niet leeg zijn nadat de form submitted is.
             if (!$fname || !$lname){
                 $nameErr = "Vul uw naam en achternaam in alstublieft.";
             }else if (!preg_match("/^[a-zA-Z-' ]*$/",$fname) || !preg_match("/^[a-zA-Z-' ]*$/",$lname)) {
                 $nameErr = "alleen letters en wit regels toegestaan!";
             }
-            
-            if (!$adres){
-                $adresErr = "Vul uw adres in alstublieft.";
-            }else{
-                $adressErr = "";
-            }
-            if (!$place){
-                $placeErr = "Vul uw plaatsnaam in alstublieft.";
-            }else{
-                $placeErr = "";
-            }
-            if (!$postcode) {
-                $postcodeErr = "Vul uw postcode in alstublieft";
-            }else{
-                $postcodeErr = "";
-            }
-            if (!$date) {
-                $dateErr = "Vul uw adres in alstublieft.";
-            }else {
-                $dateErr = "";
-            }
-
+            $adresErr = !$adres ? "Vul uw adres in alstublieft" : "";
+            $placeErr = !$place ? "Vul uw plaatsnaam in alstublieft" : "";
+            $postcodeErr = !$postcode ? "Vul uw postcode in alstublieft." : "";
+            $dateErr = !$date ? "Vul uw datum in alstublieft." : "";
             if ($choice == "none") {
                 $choiceErr = "Kiez tussen laten bezorgen of ophalen in alstublieft.";
             }else if ($choice == "bezorgen") {
@@ -162,6 +143,7 @@
 
                     //print de hoeveelheid van elke pizza * de prijs van elke pizza uit en print de bijbehorende naam.
                     //check voor welke dag het is en bereken de korting uit.
+                    
                     echo "<p>Uw bestelde pizza's: </p>";
                     for ($i=0;count($pizzas)>$i;$i++) {
                         if ($day == "Mon" && $pizzas[$i] > 0) {
@@ -184,15 +166,14 @@
                                 $pizzas[$i] *= $pizzaPrices[$i];
                                 echo  "€".$pizzas[$i]."<br>";
                                 array_push($totalPrice,$pizzas[$i]);
-                                
                             }
-
-                    }
-                    $totaalBedrag  = array_sum($totalPrice);
-                    echo "<p>Uw totaal bedrag: </p>"."€".$totaalBedrag + $extraKosten; 
-                    if ($extraKosten > 0) {
-                        echo " (+ €$extraKosten $extraMsg)";
-                    }
+                        }
+                        $totaalBedrag  = array_sum($totalPrice);
+                        echo "<p>Uw totaal bedrag: </p>"."€".$totaalBedrag + $extraKosten; 
+                        if ($extraKosten > 0) {
+                            echo " (+ €$extraKosten $extraMsg)";
+                        }
+                    
                 ?>
         </form>
         
