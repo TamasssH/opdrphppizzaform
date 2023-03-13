@@ -52,7 +52,21 @@
                 $nameErr = "alleen letters en wit regels toegestaan!";
             }
             
-            if (!$adres){
+            switch ($_POST) {
+                case !$adres:
+                    $adresErr = "Vul uw adres in alstublieft";
+                    break;
+                case !$place:
+                    $placeErr = "Vul uw plaatsnaam in alstublieft."; 
+                    break;
+                case !$postcode:
+                    $postcodeErr = "Vul uw postcode in alstublieft.";
+                    break;
+                case !$date:
+                    $dateErr = "Vul uw adres in alstublieft";
+                    break;
+            };
+            /*if (!$adres ){
                 $adresErr = "Vul uw adres in alstublieft.";
             }else{
                 $adressErr = "";
@@ -72,6 +86,7 @@
             }else {
                 $dateErr = "";
             }
+            */
 
             if ($choice == "none") {
                 $choiceErr = "Kiez tussen laten bezorgen of ophalen in alstublieft.";
@@ -184,9 +199,7 @@
                                 $pizzas[$i] *= $pizzaPrices[$i];
                                 echo  "€".$pizzas[$i]."<br>";
                                 array_push($totalPrice,$pizzas[$i]);
-                                echo "bababooey";
                             }
-
                     }
                     $totaalBedrag  = array_sum($totalPrice);
                     echo "<p>Uw totaal bedrag: </p>"."€".$totaalBedrag + $extraKosten; 
