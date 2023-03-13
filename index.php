@@ -85,7 +85,7 @@
         <link rel="stylesheet" type="text/css" href="style.css?t=1"> 
     </head>
     <body>
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
         <fieldset>
             <span class="dailyMsg"><?php echo $dailyMsg; ?></span><br />
             <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
@@ -102,23 +102,33 @@
                 value="<?php echo $pQuattro ?>">
         </fieldset>
             <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
-            Uw naam: 
+            <p>Uw naam:</p>
             <input type="text" name="fname" value="<?php if(isset($_POST['fname'])) echo htmlspecialchars($_POST['fname']); ?>"/>
             <br>
-            Uw achternaam: 
+            <p>Uw achternaam:</p>
             <input type="text" name="lname" value="<?PHP if(isset($_POST['lname'])) echo htmlspecialchars($_POST['lname']); ?>"/>
             <br>
-            Uw adres: <input type="text" name="adres" value="<?PHP if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
+
+            <p>Uw adres:</p>
+            <input type="text" name="adres" value="<?PHP if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
             <span class="errorMsg">* <?php echo $adresErr; ?></span><br />
-            Uw plaatsnaam: 
+
+            <p>Uw plaatsnaam:</p>
             <input type="text" name="place" value="<?PHP if(isset($_POST['place'])) echo htmlspecialchars($_POST['place']); ?>"/>
             <span class="errorMsg">* <?php echo $placeErr; ?></span><br />
-            Uw postcode: 
+
+            <p>Uw postcode:</p>
             <input type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
             <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
-            Uw besteldatum: 
-            <input type="datetime-local" name="date"  value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
+
+            <p>Uw besteldatum:</p>
+            <input type="date" min="2023-03-13" name="date"  value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
             <span class="errorMsg">* <?php echo $dateErr; ?></span><br />
+
+            <p>Uw besteldatum:</p> 
+            <input type="date" min="2023-03-13" name="date"  value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
+            <span class="errorMsg">* <?php echo $dateErr; ?></span><br />
+
             Kiez tussen bezorgen of ophalen: 
             <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
                 <option value="none" selected>Kiez een optie.</option>
@@ -172,7 +182,7 @@
                         echo "<p>Uw totaal bedrag: </p>"."€".$totaalBedrag + $extraKosten; 
                         if ($extraKosten > 0) {
                             echo " (+ €$extraKosten $extraMsg)";
-                        }
+                    }
                     
                 ?>
         </form>
