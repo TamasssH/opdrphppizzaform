@@ -52,6 +52,7 @@
                 $nameErr = "alleen letters en wit regels toegestaan!";
             }
             
+            //kijk of alle invulvelden wel een value hebben, anders geef een error message.
             switch ($_POST) {
                 case !$adres:
                     $adresErr = "Vul uw adres in alstublieft";
@@ -65,38 +66,18 @@
                 case !$date:
                     $dateErr = "Vul uw adres in alstublieft";
                     break;
+                case $choice == "none":
+                    $choiceErr = "Kies tussen laten bezorgen of ophalen in alstublieft.";
+                    break;
+                case $choice == "bezorgen":
+                    $extraKosten =+ 5;
+                    $extraMsg = "extra bezorg kosten";
+                    break;
+                case $choice != "none" && "bezorgen":
+                    $extraKosten = 0;
+                    $extraMsg = "extra bezorg kosten";
             };
-            /*if (!$adres ){
-                $adresErr = "Vul uw adres in alstublieft.";
-            }else{
-                $adressErr = "";
-            }
-            if (!$place){
-                $placeErr = "Vul uw plaatsnaam in alstublieft.";
-            }else{
-                $placeErr = "";
-            }
-            if (!$postcode) {
-                $postcodeErr = "Vul uw postcode in alstublieft";
-            }else{
-                $postcodeErr = "";
-            }
-            if (!$date) {
-                $dateErr = "Vul uw adres in alstublieft.";
-            }else {
-                $dateErr = "";
-            }
-            */
-
-            if ($choice == "none") {
-                $choiceErr = "Kiez tussen laten bezorgen of ophalen in alstublieft.";
-            }else if ($choice == "bezorgen") {
-                $extraKosten =+ 5;
-                $extraMsg = "extra bezorg kosten";
-            }else {
-                $extraKosten = 0;
-                $extraMsg = "extra bezorg kosten";
-            }
+            
             //check voor als alle hoeveelheden van de verschillende pizza's niet 0 zijn, want dat betekent dat er niks besteld is.
             if (array_sum($pizzas) == 0) {
                 $pizzaErr = "Je moet tenminste 1 pizza bestellen!";
