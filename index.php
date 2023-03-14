@@ -88,21 +88,35 @@
     </head>
     <body>
         <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <fieldset>
+        <div>
             <span class="dailyMsg"><?php echo $dailyMsg; ?></span><br />
             <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
-                <legend>Pizzas die je kunt bestellen.</legend>
+                <h2>Pizzas die je kunt bestellen.</h2>
+                <table>
+                    <td>
+                        <tr>
+                            <th>Pizza soort</th>
+                            <th>Prijs per stuk</th>      
+                        </tr>
+                        <tr>
+                            <td><p>Pizza margherita <?php echo "€".$pizzaPrices[0] ?></p><input type="number" name="pMargherita" min="0" max="10" 
+                            value="<?php echo $pMargherita; ?>"></td>
+                        </tr>
+                    </td>
+                </table>
+                         
                 <p>Pizza margherita <?php echo "€".$pizzaPrices[0] ?></p><input type="number" name="pMargherita" min="0" max="10" 
-                value="<?php echo $pMargherita; ?>">            
+                value="<?php echo $pMargherita; ?>"> 
                 <p>pizza Funghi <?php echo "€".$pizzaPrices[1] ?></p><input type="number" name="pFunghi" min="0" max="10" 
-                value="<?php echo $pFunghi; ?>">
+                value="<?php echo $pFunghi; ?>"> 
                 <p>pizza Marina <?php echo "€".$pizzaPrices[2] ?></p><input type="number" name="pMarina" min="0" max="10" 
                 value="<?php echo $pMarina; ?>">
                 <p>pizza Hawai <?php echo "€".$pizzaPrices[3] ?></p><input type="number" name="pHawai" min="0" max="10" 
                 value="<?php echo $pHawai ?>">
                 <p>pizza Quattro Formaggi <?php echo "€".$pizzaPrices[4] ?></p><input type="number" name="pQuattro" min="0" max="10" 
                 value="<?php echo $pQuattro ?>">
-        </fieldset>
+</div>
+
             <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
             <p>Uw naam:</p>
             <input type="text" name="fname" value="<?php if(isset($_POST['fname'])) echo htmlspecialchars($_POST['fname']); ?>"/>
@@ -119,7 +133,6 @@
             <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
             <p>Uw besteldatum: </p>
             <input type="date" name="date" min="<?php echo date("Y-m-d"); ?>" value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>"/>
-            <?php echo date("Y-m-d"); ?>
             <span class="errorMsg">* <?php echo $dateErr; ?></span>
             <p>Uw besteltijd:</p> 
             <input type="time" name="time" value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>"/>
