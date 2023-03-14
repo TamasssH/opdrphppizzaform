@@ -7,6 +7,7 @@
     $pizzaNames = array("Pizza Margherita","Pizza Funghi","Pizza Marina","Pizza Hawai","Pizza Quattro formaggi");
     $totalPrice = array();
     $day = date('D');
+    $dateToday = date("Y-m-d");
     //(error) messages + extra messages
     $nameErr = $adresErr = $placeErr = $postcodeErr = $dateErr = $pizzaErr = $choiceErr = $dailyMsg = $extraMsg = "";
     //$currentDate = date('d-m-Y h:i:');
@@ -90,7 +91,7 @@
         <fieldset>
             <span class="dailyMsg"><?php echo $dailyMsg; ?></span><br />
             <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
-            <legend>Pizzas die je kunt bestellen.</legend>
+                <legend>Pizzas die je kunt bestellen.</legend>
                 <p>Pizza margherita <?php echo "€".$pizzaPrices[0] ?></p><input type="number" name="pMargherita" min="0" max="10" 
                 value="<?php echo $pMargherita; ?>">            
                 <p>pizza Funghi <?php echo "€".$pizzaPrices[1] ?></p><input type="number" name="pFunghi" min="0" max="10" 
@@ -106,9 +107,9 @@
             <p>Uw naam:</p>
             <input type="text" name="fname" value="<?php if(isset($_POST['fname'])) echo htmlspecialchars($_POST['fname']); ?>"/>
             <p>Uw achternaam:</p>
-            <input type="text" name="lname" value="<?PHP if(isset($_POST['lname'])) echo htmlspecialchars($_POST['lname']); ?>"/>
+            <input type="text" name="lname" value="<?php if(isset($_POST['lname'])) echo htmlspecialchars($_POST['lname']); ?>"/>
             <p>Uw adres:</p>
-            <input type="text" name="adres" value="<?PHP if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
+            <input type="text" name="adres" value="<?php if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
             <span class="errorMsg">* <?php echo $adresErr; ?></span><br />
             <p>Uw plaatsnaam:</p>
             <input type="text" name="place" value="<?PHP if(isset($_POST['place'])) echo htmlspecialchars($_POST['place']); ?>"/>
@@ -116,16 +117,14 @@
             <p>Uw postcode:</p>
             <input type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
             <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
-            
             <p>Uw besteldatum: </p>
-            <input type="date" name="date" min="<?php date("d-m-Y");?>"  
-            value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
+            <input type="date" name="date" min="<?php echo date("Y-m-d"); ?>" value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>"/>
+            <?php echo date("Y-m-d"); ?>
             <span class="errorMsg">* <?php echo $dateErr; ?></span>
             <p>Uw besteltijd:</p> 
-            <input type="time" name="time" min=<?php date("G");?>  
-            value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>"/>
+            <input type="time" name="time" value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>"/>
             <br>
-            Kiez tussen bezorgen of ophalen: 
+            <p>Kiez tussen bezorgen of ophalen: </p>
             <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
                 <option value="none" selected>Kiez een optie.</option>
                 <option value="Afhalen" >Afhalen.</option>
@@ -133,21 +132,21 @@
             </select>
             <span class="errorMsg">* <?php echo $choiceErr; ?></span><br />
             <br />
-            <input type="submit" name="submit" value="Bestellen"/><br />
+            <input type="submit" name="submit" value="Bestelling plaatsen"/><br />
         </form>
         
-            <!-- De gegevens van de user uitprinten. -->
-            <h2> <?php echo "Uw gegevens: "; ?> </h2>
-            <p> <?php echo "Uw voornaam: $fname "; ?> </p>
-            <p> <?php echo "Uw achternaam: $lname"; ?> </p>
-            <p> <?php echo "Uw adres: $adres"; ?> </p>
-            <p> <?php echo "Uw plaats naam: $place"; ?> </p>
-            <p> <?php echo "Uw postcode: $postcode"; ?> </p>
-            <p> <?php echo "Uw bestel datum: $date om $time"; ?> </p>
-            <p> <?php echo "Uw bestelling keuze: $choice"; ?> </p>
-            <br>
-            <!-- De bestelde pizza's + hoeveel van elke pizza + de prijs van elke pizza + het totaal bedrag. -->
-            <p> <?php echo "<p>Uw bestelde pizza's: "; ?></p>
+        <!-- De gegevens van de user uitprinten. -->
+        <h2> <?php echo "Uw gegevens: "; ?> </h2>
+        <p> <?php echo "Uw voornaam: $fname "; ?> </p>
+        <p> <?php echo "Uw achternaam: $lname"; ?> </p>
+        <p> <?php echo "Uw adres: $adres"; ?> </p>
+        <p> <?php echo "Uw plaats naam: $place"; ?> </p>
+        <p> <?php echo "Uw postcode: $postcode"; ?> </p>
+        <p> <?php echo "Uw bestel datum: $date om $time"; ?> </p>
+        <p> <?php echo "Uw bestelling keuze: $choice"; ?> </p>
+        <br>
+        <!-- De bestelde pizza's + hoeveel van elke pizza + de prijs van elke pizza + het totaal bedrag. -->
+        <h2> <?php echo "<p>Uw bestelde pizza's: "; ?></h2>
         <?php 
             //check voor welke dag het is en bereken de korting uit.
             for ($i=0;count($pizzas)>$i;$i++) {
