@@ -53,7 +53,7 @@
             $adresErr = !$adres ? "Vul uw adres in alstublieft" : "";
             $placeErr = !$place ? "Vul uw plaatsnaam in alstublieft" : "";
             $postcodeErr = !$postcode ? "Vul uw postcode in alstublieft." : "";
-            $dateErr = !$date ? "Vul uw datum in alstublieft." : "";
+            $dateErr = !$date ? "Vul de datum & tijd in alstublieft." : "";
             if ($choice == "none") {
                 $choiceErr = "Kiez tussen laten bezorgen of ophalen in alstublieft.";
             }else if ($choice == "bezorgen") {
@@ -104,31 +104,24 @@
             <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
             <p>Uw naam:</p>
             <input type="text" name="fname" value="<?php if(isset($_POST['fname'])) echo htmlspecialchars($_POST['fname']); ?>"/>
-            <br>
             <p>Uw achternaam:</p>
             <input type="text" name="lname" value="<?PHP if(isset($_POST['lname'])) echo htmlspecialchars($_POST['lname']); ?>"/>
-            <br>
-
             <p>Uw adres:</p>
             <input type="text" name="adres" value="<?PHP if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
             <span class="errorMsg">* <?php echo $adresErr; ?></span><br />
-
             <p>Uw plaatsnaam:</p>
             <input type="text" name="place" value="<?PHP if(isset($_POST['place'])) echo htmlspecialchars($_POST['place']); ?>"/>
             <span class="errorMsg">* <?php echo $placeErr; ?></span><br />
-
             <p>Uw postcode:</p>
             <input type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
             <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
-
-            <p>Uw besteldatum:</p>
+            
+            <p>Uw besteldatum: </p>
             <input type="date" min="2023-03-13" name="date"  value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
-            <span class="errorMsg">* <?php echo $dateErr; ?></span><br />
-
-            <p>Uw besteldatum:</p> 
-            <input type="date" min="2023-03-13" name="date"  value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
-            <span class="errorMsg">* <?php echo $dateErr; ?></span><br />
-
+            <span class="errorMsg">* <?php echo $dateErr; ?></span>
+            <p>Uw besteltijd:</p> 
+            <input type="time" min="<?php date("G");?>" name="time"  value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>" placeholder="<?php echo date('G'); ?>"/>
+            <br>
             Kiez tussen bezorgen of ophalen: 
             <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
                 <option value="none" selected>Kiez een optie.</option>
