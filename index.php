@@ -1,79 +1,80 @@
 <?php
-        //variablen van de gegevens
-        $fname = $lname = $adres = $place = $postcode = $date = $choice =  "";
-        $pMargherita = $pFunghi = $pMarina = $pHawai = $pQuattro = $extraKosten = 0;
-        $pizzas = array();
-        $pizzaPrices = array($price1=12.50,$price2=12.50,$price3=13.95,$price4=11.50,$price5=14.50);
-        $pizzaNames = array("Pizza Margherita","Pizza Funghi","Pizza Marina","Pizza Hawai","Pizza Quattro formaggi");
-        $totalPrice = array();
-        $day = date('D');
-        //(error) messages + extra messages
-        $nameErr = $adresErr = $placeErr = $postcodeErr = $dateErr = $pizzaErr = $choiceErr = $dailyMsg = $extraMsg = "";
-        //$currentDate = date('d-m-Y h:i:');
+    //variablen van de gegevens
+    $fname = $lname = $adres = $place = $postcode = $date = $choice = $time = "";
+    $pMargherita = $pFunghi = $pMarina = $pHawai = $pQuattro = $extraKosten = 0;
+    $pizzas = array();
+    $pizzaPrices = array($price1=12.50,$price2=12.50,$price3=13.95,$price4=11.50,$price5=14.50);
+    $pizzaNames = array("Pizza Margherita","Pizza Funghi","Pizza Marina","Pizza Hawai","Pizza Quattro formaggi");
+    $totalPrice = array();
+    $day = date('D');
+    //(error) messages + extra messages
+    $nameErr = $adresErr = $placeErr = $postcodeErr = $dateErr = $pizzaErr = $choiceErr = $dailyMsg = $extraMsg = "";
+    //$currentDate = date('d-m-Y h:i:');
 
-        // de functie die ervoor zorgt dat de data van de user wordt getest.
-        function test_input($data) {
-            $data = trim($data);
-            $data = stripslashes($data);
-            $data = htmlspecialchars($data);
-            return $data;
+    // de functie die ervoor zorgt dat de data van de user wordt getest.
+    function test_input($data) {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
+    /*check voor als de post method word gebruikt
+    en als die wordt gebruikt dan excuteer de 
+    test_input function zodat de data geen speciale characters bevat.
+    Daarna wordt de user data stored in n hoop variables.
+    Er wordt ook gechecked op speciale chars met regular expressions
+    */ 
+    if (isset($_POST["submit"])) {
+        phpinfo(INFO_VARIABLES);
+    
+        //de variablen opslaan.
+        $fname = test_input($_POST["fname"]);
+        $lname = test_input($_POST["lname"]);
+        $adres = test_input($_POST["adres"]);
+        $place = test_input($_POST["place"]);
+        $postcode = test_input($_POST["postcode"]);
+        $date = test_input($_POST["date"]);
+        $time = test_input($_POST["time"]);
+        $choice = test_input($_POST["choice"]);
+
+        //de hoeveelheid pizzas opslaan en een floatvalue van maken zodat je ze keer de bijbehorende prijs kan doen.
+        $pMargherita = floatval($_POST["pMargherita"]);
+        $pFunghi = floatval($_POST["pFunghi"]);
+        $pMarina = floatval($_POST["pMarina"]);
+        $pHawai = floatval($_POST["pHawai"]);
+        $pQuattro = floatval($_POST["pQuattro"]);
+        array_push($pizzas, $pMargherita,$pFunghi,$pMarina,$pHawai,$pQuattro);
+
+        if (!$fname || !$lname){
+            $nameErr = "Vul uw naam en achternaam in alstublieft.";
+        }else if (!preg_match("/^[a-zA-Z-' ]*$/",$fname) || !preg_match("/^[a-zA-Z-' ]*$/",$lname)) {
+            $nameErr = "alleen letters en wit regels toegestaan!";
         }
-
-        /*check voor als de post method word gebruikt
-        en als die wordt gebruikt dan excuteer de 
-        test_input function zodat de data geen speciale characters bevat.
-        Daarna wordt de user data stored in n hoop variables.
-        Er wordt ook gechecked op speciale chars met regular expressions
-        */ 
-        if (isset($_POST["submit"])) {
-            phpinfo(INFO_VARIABLES);
-
-            //de variablen opslaan.
-            $fname = test_input($_POST["fname"]);
-            $lname = test_input($_POST["lname"]);
-            $adres = test_input($_POST["adres"]);
-            $place = test_input($_POST["place"]);
-            $postcode = test_input($_POST["postcode"]);
-            $date = test_input($_POST["date"]);
-            $choice = test_input($_POST["choice"]);
-
-            //de hoeveelheid pizzas opslaan en een floatvalue van maken zodat je ze keer de bijbehorende prijs kan doen.
-            $pMargherita = floatval($_POST["pMargherita"]);
-            $pFunghi = floatval($_POST["pFunghi"]);
-            $pMarina = floatval($_POST["pMarina"]);
-            $pHawai = floatval($_POST["pHawai"]);
-            $pQuattro = floatval($_POST["pQuattro"]);
-            array_push($pizzas, $pMargherita,$pFunghi,$pMarina,$pHawai,$pQuattro);
-
-            if (!$fname || !$lname){
-                $nameErr = "Vul uw naam en achternaam in alstublieft.";
-            }else if (!preg_match("/^[a-zA-Z-' ]*$/",$fname) || !preg_match("/^[a-zA-Z-' ]*$/",$lname)) {
-                $nameErr = "alleen letters en wit regels toegestaan!";
-            }
-            $adresErr = !$adres ? "Vul uw adres in alstublieft" : "";
-            $placeErr = !$place ? "Vul uw plaatsnaam in alstublieft" : "";
-            $postcodeErr = !$postcode ? "Vul uw postcode in alstublieft." : "";
-            $dateErr = !$date ? "Vul de datum & tijd in alstublieft." : "";
-            if ($choice == "none") {
-                $choiceErr = "Kiez tussen laten bezorgen of ophalen in alstublieft.";
-            }else if ($choice == "bezorgen") {
-                $extraKosten =+ 5;
-                $extraMsg = "extra bezorg kosten";
-            }else {
-                $extraKosten = 0;
-                $extraMsg = "extra bezorg kosten";
-            }
-            //check voor als alle hoeveelheden van de verschillende pizza's niet 0 zijn, want dat betekent dat er niks besteld is.
-            if (array_sum($pizzas) == 0) {
-                $pizzaErr = "Je moet tenminste 1 pizza bestellen!";
-            }
-            if ($day == "Mon") {
-                $dailyMsg = "Het is pizza actie dag. alle pizza's nu voor maar €7.50!";
-            }else if ($day == "Fri") {
-                $dailyMsg = "Het is pizza start weekend dag. Alle bestelling boven de €20 krijgen 15% korting!";
+        $adresErr = !$adres ? "Vul uw adres in alstublieft" : "";
+        $placeErr = !$place ? "Vul uw plaatsnaam in alstublieft" : "";
+        $postcodeErr = !$postcode ? "Vul uw postcode in alstublieft." : "";
+        $dateErr = !$date || !$time ? "Vul de datum & tijd in alstublieft." : "";
+        if ($choice == "none") {
+            $choiceErr = "Kiez tussen laten bezorgen of ophalen in alstublieft.";
+        }else if ($choice == "bezorgen") {
+            $extraKosten =+ 5;
+            $extraMsg = "extra bezorg kosten";
+        }else {
+            $extraKosten = 0;
+            $extraMsg = "extra bezorg kosten";
+        }
+        //check voor als alle hoeveelheden van de verschillende pizza's niet 0 zijn, want dat betekent dat er niks besteld is.
+        if (array_sum($pizzas) == 0) {
+            $pizzaErr = "Je moet tenminste 1 pizza bestellen!";
+        }
+        if ($day == "Mon") {
+            $dailyMsg = "Het is pizza actie dag. alle pizza's nu voor maar €7.50!";
+        }else if ($day == "Fri") {
+            $dailyMsg = "Het is pizza start weekend dag. Alle bestelling boven de €20 krijgen 15% korting!";
                 
-            }
         }
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -117,10 +118,12 @@
             <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
             
             <p>Uw besteldatum: </p>
-            <input type="date" min=<?php date("d-m-Y");?> name="date" value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
+            <input type="date" name="date" min="<?php date("d-m-Y");?>"  
+            value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
             <span class="errorMsg">* <?php echo $dateErr; ?></span>
             <p>Uw besteltijd:</p> 
-            <input type="time" min=<?php date("G");?> name="time"  value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>" placeholder="<?php echo date('G'); ?>"/>
+            <input type="time" name="time" min=<?php date("G");?>  
+            value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>"/>
             <br>
             Kiez tussen bezorgen of ophalen: 
             <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
@@ -134,14 +137,13 @@
         </form>
         
             <!-- De gegevens van de user uitprinten. -->
-            
             <h2> <?php echo "Uw gegevens: "; ?> </h2>
             <p> <?php echo "Uw voornaam: $fname "; ?> </p>
             <p> <?php echo "Uw achternaam: $lname"; ?> </p>
             <p> <?php echo "Uw adres: $adres"; ?> </p>
             <p> <?php echo "Uw plaats naam: $place"; ?> </p>
             <p> <?php echo "Uw postcode: $postcode"; ?> </p>
-            <p> <?php echo "Uw bestel datum: $date"; ?> </p>
+            <p> <?php echo "Uw bestel datum: $date om $time"; ?> </p>
             <p> <?php echo "Uw bestelling keuze: $choice"; ?> </p>
             <br>
             <!-- De bestelde pizza's + hoeveel van elke pizza + de prijs van elke pizza + het totaal bedrag. -->
