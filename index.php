@@ -117,7 +117,7 @@
             <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
             
             <p>Uw besteldatum: </p>
-            <input type="date" min="2023-03-13" name="date"  value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
+            <input type="date" min="<?php date("d-m-Y"); ?>" name="date"  value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
             <span class="errorMsg">* <?php echo $dateErr; ?></span>
             <p>Uw besteltijd:</p> 
             <input type="time" min="<?php date("G");?>" name="time"  value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>" placeholder="<?php echo date('G'); ?>"/>
@@ -131,54 +131,50 @@
             <span class="errorMsg">* <?php echo $choiceErr; ?></span><br />
             <br />
             <input type="submit" name="submit" value="Bestellen"/><br />
-                <?php
-            
-                    //De gegevens van de user uitprinten.
-                    echo "<h2>Uw gegevens: </h2>";
-                    echo "<p>Uw voornaam: $fname</p>";
-                    echo "<p>Uw achternaam: $lname</p>";
-                    echo "<p>Uw adres: $adres</p>";
-                    echo "<p>Uw plaats naam: $place</p>";
-                    echo "<p>Uw postcode: $postcode</p>";
-                    echo "<p>Uw bestel datum: $date </p>";
-                    echo "<p>Uw bestelling keuze: $choice</p>";
-                    echo "<br>";
-
-                    //print de hoeveelheid van elke pizza * de prijs van elke pizza uit en print de bijbehorende naam.
-                    //check voor welke dag het is en bereken de korting uit.
-                    
-                    echo "<p>Uw bestelde pizza's: </p>";
-                    for ($i=0;count($pizzas)>$i;$i++) {
-                        if ($day == "Mon" && $pizzas[$i] > 0) {
-                            echo $pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
-                            $pizzas[$i] *= 7.50;
-                            echo  "€".$pizzas[$i]."<br>";
-                            array_push($totalPrice,$pizzas[$i]);
-
-                            }else if ($day == "Fri" && $pizzas[$i] > 0) {
-                                echo $pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
-                                $pizzas[$i] *= $pizzaPrices[$i];
-                                array_push($totalPrice,$pizzas[$i]);
-                            if (array_sum($totalPrice) > 20) {
-                                $totalPrice[$i] / 100 * 15;
-                                }
-                                echo "€".$pizzas[$i]."<br>";
-                                
-                            }else if ($day != "Mon" && $day != "Fri" && $pizzas[$i] > 0) {
-                                echo $pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
-                                $pizzas[$i] *= $pizzaPrices[$i];
-                                echo  "€".$pizzas[$i]."<br>";
-                                array_push($totalPrice,$pizzas[$i]);
-                            }
-                        }
-                        $totaalBedrag  = array_sum($totalPrice);
-                        echo "<p>Uw totaal bedrag: </p>"."€".$totaalBedrag + $extraKosten; 
-                        if ($extraKosten > 0) {
-                            echo " (+ €$extraKosten $extraMsg)";
-                    }
-                    
-                ?>
         </form>
         
+            <!-- De gegevens van de user uitprinten. -->
+            
+            <h2> <?php echo "Uw gegevens: "; ?> </h2>
+            <p> <?php echo "Uw voornaam: $fname "; ?> </p>
+            <p> <?php echo "Uw achternaam: $lname"; ?> </p>
+            <p> <?php echo "Uw adres: $adres"; ?> </p>
+            <p> <?php echo "Uw plaats naam: $place"; ?> </p>
+            <p> <?php echo "Uw postcode: $postcode"; ?> </p>
+            <p> <?php echo "Uw bestel datum: $date "; ?> </p>
+            <p> <?php echo "Uw bestelling keuze: $choice"; ?> </p>
+            <br>
+            <!-- De bestelde pizza's + hoeveel van elke pizza + de prijs van elke pizza + het totaal bedrag. -->
+            <p> <?php echo "<p>Uw bestelde pizza's: "; ?></p>
+        <?php 
+            //print de hoeveelheid van elke pizza * de prijs van elke pizza uit en print de bijbehorende naam.
+            //check voor welke dag het is en bereken de korting uit.
+            for ($i=0;count($pizzas)>$i;$i++) {
+                if ($day == "Mon" && $pizzas[$i] > 0) {
+                    echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
+                    $pizzas[$i] *= 7.50;
+                    echo  "€".$pizzas[$i]."</p>";
+                    array_push($totalPrice,$pizzas[$i]);
+                    }else if ($day == "Fri" && $pizzas[$i] > 0) {
+                        echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
+                        $pizzas[$i] *= $pizzaPrices[$i];
+                        array_push($totalPrice,$pizzas[$i]);
+                    if (array_sum($totalPrice) > 20) {
+                        $totalPrice[$i] / 100 * 15;
+                        }
+                        echo "€".$pizzas[$i]."</p>";     
+                    }else if ($day != "Mon" && $day != "Fri" && $pizzas[$i] > 0) {
+                        echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
+                        $pizzas[$i] *= $pizzaPrices[$i];
+                        echo  "€".$pizzas[$i]."</p>";
+                        array_push($totalPrice,$pizzas[$i]);
+                    }
+                }
+                $totaalBedrag  = array_sum($totalPrice);
+                echo "<p>Uw totaal bedrag: €".$totaalBedrag + $extraKosten; 
+                if ($extraKosten > 0) {
+                    echo " (+ €$extraKosten $extraMsg)</p>";
+                }
+        ?>
     </body>
 </html>
