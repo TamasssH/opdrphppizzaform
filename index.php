@@ -82,7 +82,7 @@
         <meta charset="UTF-8">
         <meta  name="viewport" content="width=device-width,
         initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css?t=1"> 
+        <link rel="stylesheet" type="text/css" href="style.css?t=2"> 
     </head>
     <body>
         <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
@@ -117,10 +117,10 @@
             <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
             
             <p>Uw besteldatum: </p>
-            <input type="date" min="<?php date("d-m-Y"); ?>" name="date"  value="<?php if(isset($_POST['date'])) echo htmlspecialchars($_POST['date']); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
+            <input type="date" min=<?php date("d-m-Y");?> name="date" value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>" placeholder="<?php echo date('d-m-Y'); ?>"/>
             <span class="errorMsg">* <?php echo $dateErr; ?></span>
             <p>Uw besteltijd:</p> 
-            <input type="time" min="<?php date("G");?>" name="time"  value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>" placeholder="<?php echo date('G'); ?>"/>
+            <input type="time" min=<?php date("G");?> name="time"  value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>" placeholder="<?php echo date('G'); ?>"/>
             <br>
             Kiez tussen bezorgen of ophalen: 
             <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
@@ -141,13 +141,12 @@
             <p> <?php echo "Uw adres: $adres"; ?> </p>
             <p> <?php echo "Uw plaats naam: $place"; ?> </p>
             <p> <?php echo "Uw postcode: $postcode"; ?> </p>
-            <p> <?php echo "Uw bestel datum: $date "; ?> </p>
+            <p> <?php echo "Uw bestel datum: $date"; ?> </p>
             <p> <?php echo "Uw bestelling keuze: $choice"; ?> </p>
             <br>
             <!-- De bestelde pizza's + hoeveel van elke pizza + de prijs van elke pizza + het totaal bedrag. -->
             <p> <?php echo "<p>Uw bestelde pizza's: "; ?></p>
         <?php 
-            //print de hoeveelheid van elke pizza * de prijs van elke pizza uit en print de bijbehorende naam.
             //check voor welke dag het is en bereken de korting uit.
             for ($i=0;count($pizzas)>$i;$i++) {
                 if ($day == "Mon" && $pizzas[$i] > 0) {
