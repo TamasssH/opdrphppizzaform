@@ -74,147 +74,164 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Pizza</title>
+        <title>Pizzaria di sog</title>
         <meta charset="UTF-8">
         <meta  name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" type="text/css" href="style.css?t=1"> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">   
     </head>
     <body>
-        <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-            <div>
-                <span class="dailyMsg"><?php echo $dailyMsg; ?></span><br />
-                <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
-                <h2>Pizzas die je kunt bestellen.</h2>
-                <div class="pizzaLijst">      
-                    <div class="column1">
-                        <img src="resources/margherita.jpg" alt="pizza margherita" width="250" height="250">
-                        <p>
-                            Pizza margherita <?php echo "€".$pizzaPrices[0] ?>
-                            <input type="number" name="pMargherita" min="0" max="10" value="<?php echo $pMargherita; ?>">
-                        </p>
-                    </div>
-                    <div class="column2">
-                        <img src="resources/funghi.png" alt="pizza funghi" width="250" height="250">
-                        <p>
-                            pizza Funghi <?php echo "€".$pizzaPrices[1] ?>
-                            <input type="number" name="pFunghi" min="0" max="10" value="<?php echo $pFunghi; ?>">
-                        </p>
-                    </div>
-                    <div class="column3">
-                        <img src="resources/marina.jpg" alt="pizza marina" width="250" height="250">
-                        <p>
-                            pizza Marina <?php echo "€".$pizzaPrices[2] ?>
-                            <input type="number" name="pMarina" min="0" max="10" value="<?php echo $pMarina; ?>">
-                        </p>
-                    </div>
-                    <div class="column4">
-                        <img src="resources/Quattro_formaggi.png" alt="pizza quattro formaggi" width="250" height="250">
-                        <p>
-                            pizza Quattro Formaggi <?php echo "€".$pizzaPrices[4] ?>
-                            <input type="number" name="pQuattro" min="0" max="10" value="<?php echo $pQuattro ?>">
-                        </p>
-                    </div>
-                    <div class="column5">
-                        <img src="resources/hawaii.jpg" alt="pizza hawaii" width="250" height="250">
-                        <p>
-                            pizza Hawai <?php echo "€".$pizzaPrices[3] ?>
-                            <input type="number" name="pHawai" min="0" max="10" value="<?php echo $pHawai ?>">
-                        </p>
+        <header>
+            <h1>Pizza di sog.</h1>
+        </header>
+        <main>
+            <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <div>
+                    <span class="dailyMsg"><?php echo $dailyMsg; ?></span><br />
+                    <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
+                    <h2>Pizzas die je kunt bestellen.</h2>
+                    <div class="pizzaLijst">      
+                        <div class="column1">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
+                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet.
+                            </p>
+                            <img src="resources/margherita.jpg" alt="pizza margherita" width="250" height="250">
+                            <p>
+                                Pizza margherita <?php echo "€".$pizzaPrices[0] ?>
+                                <input type="number" name="pMargherita" min="0" max="10" value="<?php echo $pMargherita; ?>">
+                            </p>
+                        </div>
+                        <div class="column2">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
+                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet.
+                            </p>
+                            <img src="resources/funghi.png" alt="pizza funghi" width="250" height="250">
+                            <p>
+                                pizza Funghi <?php echo "€".$pizzaPrices[1] ?>
+                                <input type="number" name="pFunghi" min="0" max="10" value="<?php echo $pFunghi; ?>">
+                            </p>
+                        </div>
+                        <div class="column3">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
+                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet.
+                            </p>
+                            <img src="resources/marina.jpg" alt="pizza marina" width="250" height="250">
+                            <p>
+                                pizza Marina <?php echo "€".$pizzaPrices[2] ?>
+                                <input type="number" name="pMarina" min="0" max="10" value="<?php echo $pMarina; ?>">
+                            </p>
+                        </div>
+                        <div class="column4">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
+                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet.
+                            </p>
+                            <img src="resources/Quattro_formaggi.png" alt="pizza quattro formaggi" width="250" height="250">
+                            <p>
+                                pizza Quattro Formaggi <?php echo "€".$pizzaPrices[4] ?>
+                                <input type="number" name="pQuattro" min="0" max="10" value="<?php echo $pQuattro ?>">
+                            </p>
+                        </div>
+                        <div class="column5">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
+                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet.
+                            </p>
+                            <img src="resources/hawaii.jpg" alt="pizza hawaii" width="250" height="250">
+                            <p>
+                                pizza Hawai <?php echo "€".$pizzaPrices[3] ?>
+                                <input type="number" name="pHawai" min="0" max="10" value="<?php echo $pHawai ?>">
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
-            <p>Uw naam:</p>
-            <input type="text" name="fname" value="<?php if(isset($_POST['fname'])) echo htmlspecialchars($_POST['fname']); ?>"/>
-            <p>Uw achternaam:</p>
-            <input type="text" name="lname" value="<?php if(isset($_POST['lname'])) echo htmlspecialchars($_POST['lname']); ?>"/>
-            <p>Uw adres:</p>
-            <input type="text" name="adres" value="<?php if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
-            <span class="errorMsg">* <?php echo $adresErr; ?></span><br />
-            <p>Uw plaatsnaam:</p>
-            <input type="text" name="place" value="<?PHP if(isset($_POST['place'])) echo htmlspecialchars($_POST['place']); ?>"/>
-            <span class="errorMsg">* <?php echo $placeErr; ?></span><br />
-            <p>Uw postcode:</p>
-            <input type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
-            <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
-            <p>Uw besteldatum: </p>
-            <input type="date" name="date" min="<?php echo date("Y-m-d"); ?>" value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>"/>
-            <span class="errorMsg">* <?php echo $dateErr; ?></span>
-            <p>Uw besteltijd:</p> 
-            <input type="time" name="time" value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>"/>
-            <br>
-            <p>Kies tussen bezorgen of ophalen: </p>
-            <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
-                <option value="none" selected>Kies een optie.</option>
-                <option value="Afhalen" >Afhalen.</option>
-                <option value="bezorgen">Laten bezorgen.</option>
-            </select>
-            <span class="errorMsg">* <?php echo $choiceErr; ?></span><br />
-            <br />
-            <input type="submit" name="submit" value="Bestelling plaatsen"/><br />
-        </form>
-        <!-- De gegevens van de user uitprinten. -->
-        <h2>
-            <?php echo "Uw gegevens: "; ?>
-        </h2>
-        <p>
-            <?php echo "Uw voornaam: $fname "; ?>
-        </p>
-        <p>
-            <?php echo "Uw achternaam: $lname"; ?>
-        </p>
-        <p>
-            <?php echo "Uw adres: $adres"; ?>
-        </p>
-        <p>
-            <?php echo "Uw plaats naam: $place"; ?>
-        </p>
-        <p>
-            <?php echo "Uw postcode: $postcode"; ?>
-        </p>
-        <p>
-            <?php echo "Uw bestel datum: $date om $time"; ?>
-        </p>
-        <p>
-            <?php echo "Uw bestelling keuze: $choice"; ?>
-        </p>
-        <br>
-        <!-- De bestelde pizza's + hoeveel van elke pizza + de prijs van elke pizza + het totaal bedrag. -->
-        <h2>
-            <?php echo "<p>Uw bestelde pizza's: "; ?>
-        </h2>
-        <?php 
-            //check voor welke dag het is en bereken de korting uit.
-            for ($i=0;count($pizzas)>$i;$i++) {
-                if ($day == "Mon" && $pizzas[$i] > 0) {
-                    echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
-                    $pizzas[$i] *= 7.50;
-                    echo  "€".$pizzas[$i]."</p>";
-                    array_push($totalPrice,$pizzas[$i]);
-                    }else if ($day == "Fri" && $pizzas[$i] > 0) {
-                        echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
-                        $pizzas[$i] *= $pizzaPrices[$i];
-                        array_push($totalPrice,$pizzas[$i]);
-                    if (array_sum($totalPrice) > 20) {
-                        $totalPrice[$i] / 100 * 15;
+                <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
+                <p>Uw naam:</p>
+                <input type="text" name="fname" value="<?php if(isset($_POST['fname'])) echo htmlspecialchars($_POST['fname']); ?>"/>
+                <p>Uw achternaam:</p>
+                <input type="text" name="lname" value="<?php if(isset($_POST['lname'])) echo htmlspecialchars($_POST['lname']); ?>"/>
+                <p>Uw adres:</p>
+                <input type="text" name="adres" value="<?php if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
+                <span class="errorMsg">* <?php echo $adresErr; ?></span><br />
+                <p>Uw plaatsnaam:</p>
+                <input type="text" name="place" value="<?PHP if(isset($_POST['place'])) echo htmlspecialchars($_POST['place']); ?>"/>
+                <span class="errorMsg">* <?php echo $placeErr; ?></span><br />
+                <p>Uw postcode:</p>
+                <input type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
+                <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
+                <p>Uw besteldatum: </p>
+                <input type="date" name="date" min="<?php echo date("Y-m-d"); ?>" value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>"/>
+                <span class="errorMsg">* <?php echo $dateErr; ?></span>
+                <p>Uw besteltijd:</p> 
+                <input type="time" name="time" value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>"/>
+                <br>
+                <p>Kies tussen bezorgen of ophalen: </p>
+                <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
+                    <option value="none" selected>Kies een optie.</option>
+                    <option value="Afhalen" >Afhalen.</option>
+                    <option value="bezorgen">Laten bezorgen.</option>
+                </select>
+                <span class="errorMsg">* <?php echo $choiceErr; ?></span><br />
+                <br />
+                <input type="submit" name="submit" value="Bestelling plaatsen"/><br />
+            </form>
+            <div class="gegevens">
+                <!-- De gegevens van de user uitprinten. -->
+                <h2>
+                    <?php echo "Uw gegevens: "; ?>
+                </h2>
+                <p>
+                    <?php echo "Uw voornaam: $fname "; ?><br>
+                    <?php echo "Uw achternaam: $lname"; ?><br>
+                    <?php echo "Uw adres: $adres"; ?><br>
+                    <?php echo "Uw plaats naam: $place"; ?><br>
+                    <?php echo "Uw postcode: $postcode"; ?><br>
+                    <?php echo "Uw bestel datum: $date om $time"; ?><br>
+                    <?php echo "Uw bestelling keuze: $choice"; ?><br>
+                </p>     
+                <br>
+                <!-- De bestelde pizza's + hoeveel van elke pizza + de prijs van elke pizza + het totaal bedrag. -->
+                <h2>
+                    <?php echo "<p>Uw bestelde pizza's: "; ?>
+                </h2>
+                <?php 
+                    //check voor welke dag het is en bereken de korting uit.
+                    for ($i=0;count($pizzas)>$i;$i++) {
+                        if ($day == "Mon" && $pizzas[$i] > 0) {
+                            echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                            $pizzas[$i] *= 7.50;
+                            echo  "€".$pizzas[$i]."</p>";
+                            array_push($totalPrice,$pizzas[$i]);
+                            }else if ($day == "Fri" && $pizzas[$i] > 0) {
+                                echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                                $pizzas[$i] *= $pizzaPrices[$i];
+                                array_push($totalPrice,$pizzas[$i]);
+                            if (array_sum($totalPrice) > 20) {
+                                $totalPrice[$i] / 100 * 15;
+                                }
+                                echo "€".$pizzas[$i]."</p>";     
+                            }else if ($day != "Mon" && $day != "Fri" && $pizzas[$i] > 0) {
+                                echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                                $pizzas[$i] *= $pizzaPrices[$i];
+                                echo  "€".$pizzas[$i]."</p>";
+                                array_push($totalPrice,$pizzas[$i]);
+                            }
                         }
-                        echo "€".$pizzas[$i]."</p>";     
-                    }else if ($day != "Mon" && $day != "Fri" && $pizzas[$i] > 0) {
-                        echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i]."&nbsp";
-                        $pizzas[$i] *= $pizzaPrices[$i];
-                        echo  "€".$pizzas[$i]."</p>";
-                        array_push($totalPrice,$pizzas[$i]);
-                    }
-                }
-                $totaalBedrag  = array_sum($totalPrice);
-                echo "<p>Uw totaal bedrag: €".$totaalBedrag + $extraKosten; 
-                if ($extraKosten > 0) {
-                    echo " (+ €$extraKosten $extraMsg)</p>";
-                }
-        ?>
+                        $totaalBedrag  = array_sum($totalPrice);
+                        echo "<p>Uw totaal bedrag: €".$totaalBedrag + $extraKosten; 
+                        if ($extraKosten > 0) {
+                            echo " (+ €$extraKosten $extraMsg)</p>";
+                        }
+                ?>
+            </div>
+        </main>
+        <footer>
+            <p>©Copyright 2023 by Mr Sogga. All rights reversed.</p>
+        </footer>
     </body>
 </html>

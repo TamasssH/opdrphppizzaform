@@ -15,9 +15,8 @@ body {
 }
 
 .pizzaLijst {
-    
     display: grid;
-    grid-template-columns:  repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     text-align:left;
 
 }
@@ -28,4 +27,6 @@ body {
     border-width: 2px;
 } */
 
-
+.gegevens {
+    text-align: center;
+}
