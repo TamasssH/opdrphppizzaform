@@ -1,3 +1,7 @@
+body {
+    font-family: 'Merriweather', serif;
+}
+
 .errorMsg{
     color:red;
 }
@@ -23,3 +27,5 @@
     border-color: red;
     border-width: 2px;
 } */
+
+
