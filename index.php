@@ -84,14 +84,14 @@
     </head>
     <body>
         <header>
-            <h1>Pizza di sog.</h1>
+            <h1 class="title">Pizza di sog.</h1>
         </header>
         <main>
             <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div>
+                    <h2>Pizzas die je kunt bestellen.</h2>
                     <span class="dailyMsg"><?php echo $dailyMsg; ?></span><br />
                     <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
-                    <h2>Pizzas die je kunt bestellen.</h2>
                     <div class="pizzaLijst">      
                         <div class="column1">
                             <p>

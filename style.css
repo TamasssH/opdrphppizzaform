@@ -17,6 +17,7 @@ body {
 .pizzaLijst {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     text-align:left;
 
 }
@@ -30,3 +31,48 @@ body {
 .gegevens {
     text-align: center;
 }
+
+.title {
+    font-size: 45px;
+    text-align: center;
+    padding-top:20px;
+}
+
+header {
+    height:100px;
+    background-color:lightgrey;
+    border-radius: 5px;
+}
+
+.column1 {
+    background-color:lightgrey;
+    padding:15px;
+    border-radius: 5px;
+
+}
+
+.column2 {
+    background-color:lightgrey;
+    padding:15px;
+    border-radius: 5px;
+}
+
+.column3 {
+    background-color:lightgrey;
+    padding:15px;
+    border-radius: 5px;
+}
+
+.column4 {
+    background-color:lightgrey;
+    padding:15px;
+    border-radius: 5px;
+}
+
+.column5 {
+    background-color:lightgrey;
+    padding:15px;
+    border-radius: 5px;
+}
+
+
