@@ -17,9 +17,10 @@ body {
 .pizzaLijst {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    grid-template-rows: 500px 500px 500px;
+    grid-auto-rows: minmax(100%); 
+    grid-gap: 20px;
     text-align:left;
-
 }
 
 /*  div {
@@ -27,6 +28,11 @@ body {
     border-color: red;
     border-width: 2px;
 } */
+
+main {
+    margin: 0;
+    padding: 5px;
+  }
 
 .gegevens {
     text-align: center;
