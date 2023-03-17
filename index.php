@@ -84,101 +84,97 @@
     </head>
     <body>
         <header>
-            <h1 class="title">Pizza di sog.</h1>
+            <h1 class="title">Pizzaria di sog</h1>
         </header>
         <main>
             <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div>
-                    <h2>Pizzas die je kunt bestellen.</h2>
-                    <span class="dailyMsg"><?php echo $dailyMsg; ?></span><br />
+                    <h2 class="header2">Pizzas die je kunt bestellen. <span class="dailyMsg"><?php echo $dailyMsg; ?></span></h2>
                     <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
                     <div class="pizzaLijst">      
                         <div class="column1">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
-                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet.
-                            </p>
                             <img src="resources/margherita.jpg" alt="pizza margherita" width="250" height="250">
                             <p>
-                                Pizza margherita <?php echo "€".$pizzaPrices[0] ?>
-                                <input type="number" name="pMargherita" min="0" max="10" value="<?php echo $pMargherita; ?>">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
+                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
+                                dolor sit amet, consectetur adipiscing elit.
                             </p>
+                            <p>Pizza margherita <?php echo "€".$pizzaPrices[0] ?></p>
+                            <input class="inputfield" type="number" name="pMargherita" min="0" max="10" value="<?php echo $pMargherita; ?>">
                         </div>
                         <div class="column2">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
-                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet.
-                            </p>
                             <img src="resources/funghi.png" alt="pizza funghi" width="250" height="250">
                             <p>
-                                pizza Funghi <?php echo "€".$pizzaPrices[1] ?>
-                                <input type="number" name="pFunghi" min="0" max="10" value="<?php echo $pFunghi; ?>">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
+                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
+                                dolor sit amet, consectetur adipiscing elit.
                             </p>
+                            <p>pizza Funghi <?php echo "€".$pizzaPrices[1] ?></p>
+                            <input class="inputfield" type="number" name="pFunghi" min="0" max="10" value="<?php echo $pFunghi; ?>">
                         </div>
                         <div class="column3">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
-                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet.
-                            </p>
                             <img src="resources/marina.jpg" alt="pizza marina" width="250" height="250">
                             <p>
-                                pizza Marina <?php echo "€".$pizzaPrices[2] ?>
-                                <input type="number" name="pMarina" min="0" max="10" value="<?php echo $pMarina; ?>">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
+                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
+                                dolor sit amet, consectetur adipiscing elit.
                             </p>
+                            <p>pizza Marina <?php echo "€".$pizzaPrices[2] ?></p>
+                            <input class="inputfield" type="number" name="pMarina" min="0" max="10" value="<?php echo $pMarina; ?>">
                         </div>
                         <div class="column4">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
-                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet.
-                            </p>
                             <img src="resources/Quattro_formaggi.png" alt="pizza quattro formaggi" width="250" height="250">
                             <p>
-                                pizza Quattro Formaggi <?php echo "€".$pizzaPrices[4] ?>
-                                <input type="number" name="pQuattro" min="0" max="10" value="<?php echo $pQuattro ?>">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
+                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
+                                dolor sit amet, consectetur adipiscing elit.
                             </p>
+                            <p>pizza Quattro Formaggi <?php echo "€".$pizzaPrices[4] ?></p>
+                            <input class="inputfield" type="number" name="pQuattro" min="0" max="10" value="<?php echo $pQuattro ?>">
                         </div>
                         <div class="column5">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
-                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet.
-                            </p>
                             <img src="resources/hawaii.jpg" alt="pizza hawaii" width="250" height="250">
                             <p>
-                                pizza Hawai <?php echo "€".$pizzaPrices[3] ?>
-                                <input type="number" name="pHawai" min="0" max="10" value="<?php echo $pHawai ?>">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
+                                id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
+                                dolor sit amet, consectetur adipiscing elit.
                             </p>
+                            <p>pizza Hawai <?php echo "€".$pizzaPrices[3] ?></p>
+                            <input class="inputfield" type="number" name="pHawai" min="0" max="10" value="<?php echo $pHawai ?>">
                         </div>
                     </div>
                 </div>
-                <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
-                <p>Uw naam:</p>
-                <input type="text" name="fname" value="<?php if(isset($_POST['fname'])) echo htmlspecialchars($_POST['fname']); ?>"/>
-                <p>Uw achternaam:</p>
-                <input type="text" name="lname" value="<?php if(isset($_POST['lname'])) echo htmlspecialchars($_POST['lname']); ?>"/>
-                <p>Uw adres:</p>
-                <input type="text" name="adres" value="<?php if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
-                <span class="errorMsg">* <?php echo $adresErr; ?></span><br />
-                <p>Uw plaatsnaam:</p>
-                <input type="text" name="place" value="<?PHP if(isset($_POST['place'])) echo htmlspecialchars($_POST['place']); ?>"/>
-                <span class="errorMsg">* <?php echo $placeErr; ?></span><br />
-                <p>Uw postcode:</p>
-                <input type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
-                <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
-                <p>Uw besteldatum: </p>
-                <input type="date" name="date" min="<?php echo date("Y-m-d"); ?>" value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>"/>
-                <span class="errorMsg">* <?php echo $dateErr; ?></span>
-                <p>Uw besteltijd:</p> 
-                <input type="time" name="time" value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>"/>
-                <br>
-                <p>Kies tussen bezorgen of ophalen: </p>
-                <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
-                    <option value="none" selected>Kies een optie.</option>
-                    <option value="Afhalen" >Afhalen.</option>
-                    <option value="bezorgen">Laten bezorgen.</option>
-                </select>
-                <span class="errorMsg">* <?php echo $choiceErr; ?></span><br />
-                <br />
-                <input type="submit" name="submit" value="Bestelling plaatsen"/><br />
+                <div>
+                    <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
+                    <p>Uw naam:</p>
+                    <input type="text" name="fname" value="<?php if(isset($_POST['fname'])) echo htmlspecialchars($_POST['fname']); ?>"/>
+                    <p>Uw achternaam:</p>
+                    <input type="text" name="lname" value="<?php if(isset($_POST['lname'])) echo htmlspecialchars($_POST['lname']); ?>"/>
+                    <p>Uw adres:</p>
+                    <input type="text" name="adres" value="<?php if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
+                    <span class="errorMsg">* <?php echo $adresErr; ?></span><br />
+                    <p>Uw plaatsnaam:</p>
+                    <input type="text" name="place" value="<?PHP if(isset($_POST['place'])) echo htmlspecialchars($_POST['place']); ?>"/>
+                    <span class="errorMsg">* <?php echo $placeErr; ?></span><br />
+                    <p>Uw postcode:</p>
+                    <input type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
+                    <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
+                    <p>Uw besteldatum: </p>
+                    <input type="date" name="date" min="<?php echo date("Y-m-d"); ?>" value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>"/>
+                    <span class="errorMsg">* <?php echo $dateErr; ?></span>
+                    <p>Uw besteltijd:</p> 
+                    <input type="time" name="time" value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>"/>
+                    <br>
+                    <p>Kies tussen bezorgen of ophalen: </p>
+                    <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
+                        <option value="none" selected>Kies een optie.</option>
+                        <option value="Afhalen" >Afhalen.</option>
+                        <option value="bezorgen">Laten bezorgen.</option>
+                    </select>
+                    <span class="errorMsg">* <?php echo $choiceErr; ?></span><br />
+                    <br />
+                    <input type="submit" name="submit" value="Bestelling plaatsen"/><br />
+                </div>
             </form>
             <div class="gegevens">
                 <!-- De gegevens van de user uitprinten. -->
