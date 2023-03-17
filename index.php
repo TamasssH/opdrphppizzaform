@@ -77,7 +77,7 @@
         <title>Pizzaria di sog</title>
         <meta charset="UTF-8">
         <meta  name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css?t=1"> 
+        <link rel="stylesheet" type="text/css" href="style.css?t=100"> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">   
@@ -144,26 +144,26 @@
                         </div>
                     </div>
                 </div>
-                <div>
+                <div class="forminput">
                     <span class="errorMsg">* <?php echo $nameErr; ?></span><br />
                     <p>Uw naam:</p>
-                    <input type="text" name="fname" value="<?php if(isset($_POST['fname'])) echo htmlspecialchars($_POST['fname']); ?>"/>
+                    <input class="textinput" type="text" name="fname" value="<?php if(isset($_POST['fname'])) echo htmlspecialchars($_POST['fname']); ?>"/>
                     <p>Uw achternaam:</p>
-                    <input type="text" name="lname" value="<?php if(isset($_POST['lname'])) echo htmlspecialchars($_POST['lname']); ?>"/>
+                    <input class="textinput" type="text" name="lname" value="<?php if(isset($_POST['lname'])) echo htmlspecialchars($_POST['lname']); ?>"/>
                     <p>Uw adres:</p>
-                    <input type="text" name="adres" value="<?php if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
+                    <input class="textinput" type="text" name="adres" value="<?php if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
                     <span class="errorMsg">* <?php echo $adresErr; ?></span><br />
                     <p>Uw plaatsnaam:</p>
-                    <input type="text" name="place" value="<?PHP if(isset($_POST['place'])) echo htmlspecialchars($_POST['place']); ?>"/>
+                    <input class="textinput" type="text" name="place" value="<?PHP if(isset($_POST['place'])) echo htmlspecialchars($_POST['place']); ?>"/>
                     <span class="errorMsg">* <?php echo $placeErr; ?></span><br />
                     <p>Uw postcode:</p>
-                    <input type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
+                    <input class="textinput" type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
                     <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
                     <p>Uw besteldatum: </p>
-                    <input type="date" name="date" min="<?php echo date("Y-m-d"); ?>" value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>"/>
+                    <input class="textinput" type="date" name="date" min="<?php echo date("Y-m-d"); ?>" value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>"/>
                     <span class="errorMsg">* <?php echo $dateErr; ?></span>
                     <p>Uw besteltijd:</p> 
-                    <input type="time" name="time" value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>"/>
+                    <input class="textinput" type="time" name="time" value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>"/>
                     <br>
                     <p>Kies tussen bezorgen of ophalen: </p>
                     <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
