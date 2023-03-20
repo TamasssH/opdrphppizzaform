@@ -77,7 +77,7 @@
         <title>Pizzaria di sog</title>
         <meta charset="UTF-8">
         <meta  name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css?t=10"> 
+        <link rel="stylesheet" type="text/css" href="style.css?t=3"> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">   
@@ -191,80 +191,65 @@
                     <?php echo "Uw bestelling keuze: $choice"; ?><br>
                 </p>     
                 <br>
-                <!-- De bestelde pizza's + hoeveel van elke pizza + de prijs van elke pizza + het totaal bedrag. -->
                 <h2>
                     <?php echo "<p>Uw bestelde pizza's: "; ?>
                 </h2>
-                <?php 
-                    //check voor welke dag het is en bereken de korting uit.
-                    if ($day == "Mon" && array_sum($pizzas) > 0) {
-                        for ($i=0;count($pizzas)>$i;$i++) { 
-                                echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
-                                //prijs berekenen
-                                $pizzas[$i] *= 7.50;
-                                echo " €".$pizzas[$i]."</p>";
-                                array_push($totalPrice,$pizzas[$i]);
+                <table class="gegevenspizzas">
+                    <?php 
+                        //check voor welke dag het is en bereken de korting uit.
+                        //check voor maandag en doe de hoeveelheid pizza's * €7.50
+                        if (array_sum($pizzas) > 0) {
+                            if ($day == "Mon") {
+                                echo "<p>Bestelde pizza's</p>";
+                                for ($i=0;count($pizzas)>$i;$i++) {
+                                    if ($pizzas[$i] > 0) {
+                                        echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                                        //prijs berekenen
+                                        $pizzas[$i] *= 7.50;
+                                        echo " €".$pizzas[$i]."</p>";
+                                        array_push($totalPrice,$pizzas[$i]);
+                                    }
+                                        
+                                }
                             }
-                    }
-                    if ($day == "Fri" && array_sum($pizzas) > 0) {
-                        for ($i=0;count($pizzas)>$i;$i++) {
-                                echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
-                                $pizzas[$i] *= $pizzaPrices[$i];
-                                array_push($totalPrice,$pizzas[$i]);
+                            //check voor vrijdag en check daarna of de prijs boven de €20 is en doe dan de prijs / 100 * 15.
+                            if ($day == "Fri") {
+                                echo "<p>Bestelde pizza's</p>";
+                                for ($i=0;count($pizzas)>$i;$i++) {
+                                    if ($pizzas[$i] > 0) {
+                                        echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                                        $pizzas[$i] *= $pizzaPrices[$i];
+                                        array_push($totalPrice,$pizzas[$i]);
+                                    }
+                                }
+                                if (array_sum($totalPrice) > 20) {
+                                    $totalPrice[$i] / 100 * 15;
+                                }
+                                echo "€".$pizzas[$i]."</p>";
                             }
-                            if (array_sum($totalPrice) > 20) {
-                                $totalPrice[$i] / 100 * 15;
+                            //als het niet maandag of vrijdag is doe de normale prijs berekening.
+                            if ($day != "Mon" && $day != "Fri") {
+                                echo "<p>Bestelde pizza's</p>";
+                                for ($i=0;count($pizzas)>$i;$i++) {
+                                    if ($pizzas[$i] > 0) {
+                                        echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                                        $pizzas[$i] *= $pizzaPrices[$i];
+                                        echo  "€".$pizzas[$i]."</p>";
+                                        array_push($totalPrice,$pizzas[$i]);
+                                    }
+                                    
+                                }  
                             }
-                            echo "€".$pizzas[$i]."</p>";
-                    }
-                    if ($day != "Mon" && $day != "Fri" && $pizzas > 0) {
-                        for ($i=0;count($pizzas)>$i;$i++) { 
-                            echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
-                            $pizzas[$i] *= $pizzaPrices[$i];
-                            echo  "€".$pizzas[$i]."</p>";
-                            array_push($totalPrice,$pizzas[$i]);
-                        }
-                    }
-                    $totaalBedrag  = array_sum($totalPrice);
-                        echo "<p>Uw totaal bedrag: €".$totaalBedrag + $extraKosten; 
-                        if ($extraKosten > 0) {
-                            echo " (+ €$extraKosten $extraMsg)</p>";
-                        }
-                        /*
-                        
-                        if ($day == "Mon" && $pizzas[$i] > 0) {
-                            for ($i=0;count($pizzas)>$i;$i++) { 
-                                echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
-                                $pizzas[$i] *= 7.50;
-                                echo  "€".$pizzas[$i]."</p>";
-                                array_push($totalPrice,$pizzas[$i]);
-                            }
-                        }
-                        if ($day == "Fri" && array_sum($pizzas) > 0) {
-                            for ($i=0;count($pizzas)>$i;$i++) {
-                                echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
-                                $pizzas[$i] *= $pizzaPrices[$i];
-                                array_push($totalPrice,$pizzas[$i]);
-                            }
-                            if (array_sum($totalPrice) > 20) {
-                                $totalPrice[$i] / 100 * 15;
-                            }
-                            echo "€".$pizzas[$i]."</p>";
-                        }
-                        if ($day != "Mon" && $day != "Fri" && $pizzas[$i] > 0) {
-                            echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
-                            $pizzas[$i] *= $pizzaPrices[$i];
-                            echo  "€".$pizzas[$i]."</p>";
-                            array_push($totalPrice,$pizzas[$i]);
-                        }
-                        $totaalBedrag  = array_sum($totalPrice);
-                        echo "<p>Uw totaal bedrag: €".$totaalBedrag + $extraKosten; 
-                        if ($extraKosten > 0) {
-                            echo " (+ €$extraKosten $extraMsg)</p>";
+                            //print het totaal bedrag uit en de extra bezorg kosten.
+                            $totaalBedrag  = array_sum($totalPrice);
+                                echo "<p>Uw totaal bedrag: €".$totaalBedrag + $extraKosten; 
+                                if ($extraKosten > 0) {
+                                    echo " (+ €$extraKosten $extraMsg)</p>";
+                                }
                         }
                         
-                        */
-                ?>
+                        ?>
+                </table>
             </div>
         </main>
         <footer>
