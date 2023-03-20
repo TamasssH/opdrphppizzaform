@@ -77,7 +77,7 @@
         <title>Pizzaria di sog</title>
         <meta charset="UTF-8">
         <meta  name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css?t=100"> 
+        <link rel="stylesheet" type="text/css" href="style.css?t=10"> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">   
@@ -89,7 +89,7 @@
         <main>
             <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                 <div>
-                    <h2 class="header2">Pizzas die je kunt bestellen. <span class="dailyMsg"><?php echo $dailyMsg; ?></span></h2>
+                    <h2 class="header2">Acties: <span class="dailyMsg"><?php echo $dailyMsg; ?></span></h2>
                     <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
                     <div class="pizzaLijst">      
                         <div class="column1">
@@ -99,7 +99,7 @@
                                 id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
                                 dolor sit amet, consectetur adipiscing elit.
                             </p>
-                            <p>Pizza margherita <?php echo "€".$pizzaPrices[0] ?></p>
+                            <p>Pizza margherita <?php if($day == "Mon") echo "€7.50"; else echo "€".$pizzaPrices[0] ?></p>
                             <input class="inputfield" type="number" name="pMargherita" min="0" max="10" value="<?php echo $pMargherita; ?>">
                         </div>
                         <div class="column2">
@@ -109,7 +109,7 @@
                                 id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
                                 dolor sit amet, consectetur adipiscing elit.
                             </p>
-                            <p>pizza Funghi <?php echo "€".$pizzaPrices[1] ?></p>
+                            <p>pizza Funghi <?php if($day == "Mon") echo "€7.50"; else echo "€".$pizzaPrices[1] ?></p>
                             <input class="inputfield" type="number" name="pFunghi" min="0" max="10" value="<?php echo $pFunghi; ?>">
                         </div>
                         <div class="column3">
@@ -119,7 +119,7 @@
                                 id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
                                 dolor sit amet, consectetur adipiscing elit.
                             </p>
-                            <p>pizza Marina <?php echo "€".$pizzaPrices[2] ?></p>
+                            <p>pizza Marina <?php if($day == "Mon") echo "€7.50"; else echo "€".$pizzaPrices[2] ?></p>
                             <input class="inputfield" type="number" name="pMarina" min="0" max="10" value="<?php echo $pMarina; ?>">
                         </div>
                         <div class="column4">
@@ -129,7 +129,7 @@
                                 id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
                                 dolor sit amet, consectetur adipiscing elit.
                             </p>
-                            <p>pizza Quattro Formaggi <?php echo "€".$pizzaPrices[4] ?></p>
+                            <p>pizza Quattro Formaggi <?php if($day == "Mon") echo "€7.50"; else echo "€".$pizzaPrices[3] ?></p>
                             <input class="inputfield" type="number" name="pQuattro" min="0" max="10" value="<?php echo $pQuattro ?>">
                         </div>
                         <div class="column5">
@@ -139,7 +139,7 @@
                                 id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
                                 dolor sit amet, consectetur adipiscing elit.
                             </p>
-                            <p>pizza Hawai <?php echo "€".$pizzaPrices[3] ?></p>
+                            <p>pizza Hawai <?php if($day == "Mon") echo "€7.50"; else echo "€".$pizzaPrices[4] ?></p>
                             <input class="inputfield" type="number" name="pHawai" min="0" max="10" value="<?php echo $pHawai ?>">
                         </div>
                     </div>
@@ -197,32 +197,73 @@
                 </h2>
                 <?php 
                     //check voor welke dag het is en bereken de korting uit.
-                    for ($i=0;count($pizzas)>$i;$i++) {
-                        if ($day == "Mon" && $pizzas[$i] > 0) {
-                            echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
-                            $pizzas[$i] *= 7.50;
-                            echo  "€".$pizzas[$i]."</p>";
-                            array_push($totalPrice,$pizzas[$i]);
-                            }else if ($day == "Fri" && $pizzas[$i] > 0) {
+                    if ($day == "Mon" && array_sum($pizzas) > 0) {
+                        for ($i=0;count($pizzas)>$i;$i++) { 
+                                echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                                //prijs berekenen
+                                $pizzas[$i] *= 7.50;
+                                echo " €".$pizzas[$i]."</p>";
+                                array_push($totalPrice,$pizzas[$i]);
+                            }
+                    }
+                    if ($day == "Fri" && array_sum($pizzas) > 0) {
+                        for ($i=0;count($pizzas)>$i;$i++) {
                                 echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
                                 $pizzas[$i] *= $pizzaPrices[$i];
                                 array_push($totalPrice,$pizzas[$i]);
+                            }
                             if (array_sum($totalPrice) > 20) {
                                 $totalPrice[$i] / 100 * 15;
-                                }
-                                echo "€".$pizzas[$i]."</p>";     
-                            }else if ($day != "Mon" && $day != "Fri" && $pizzas[$i] > 0) {
+                            }
+                            echo "€".$pizzas[$i]."</p>";
+                    }
+                    if ($day != "Mon" && $day != "Fri" && $pizzas > 0) {
+                        for ($i=0;count($pizzas)>$i;$i++) { 
+                            echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                            $pizzas[$i] *= $pizzaPrices[$i];
+                            echo  "€".$pizzas[$i]."</p>";
+                            array_push($totalPrice,$pizzas[$i]);
+                        }
+                    }
+                    $totaalBedrag  = array_sum($totalPrice);
+                        echo "<p>Uw totaal bedrag: €".$totaalBedrag + $extraKosten; 
+                        if ($extraKosten > 0) {
+                            echo " (+ €$extraKosten $extraMsg)</p>";
+                        }
+                        /*
+                        
+                        if ($day == "Mon" && $pizzas[$i] > 0) {
+                            for ($i=0;count($pizzas)>$i;$i++) { 
                                 echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
-                                $pizzas[$i] *= $pizzaPrices[$i];
+                                $pizzas[$i] *= 7.50;
                                 echo  "€".$pizzas[$i]."</p>";
                                 array_push($totalPrice,$pizzas[$i]);
                             }
+                        }
+                        if ($day == "Fri" && array_sum($pizzas) > 0) {
+                            for ($i=0;count($pizzas)>$i;$i++) {
+                                echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                                $pizzas[$i] *= $pizzaPrices[$i];
+                                array_push($totalPrice,$pizzas[$i]);
+                            }
+                            if (array_sum($totalPrice) > 20) {
+                                $totalPrice[$i] / 100 * 15;
+                            }
+                            echo "€".$pizzas[$i]."</p>";
+                        }
+                        if ($day != "Mon" && $day != "Fri" && $pizzas[$i] > 0) {
+                            echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                            $pizzas[$i] *= $pizzaPrices[$i];
+                            echo  "€".$pizzas[$i]."</p>";
+                            array_push($totalPrice,$pizzas[$i]);
                         }
                         $totaalBedrag  = array_sum($totalPrice);
                         echo "<p>Uw totaal bedrag: €".$totaalBedrag + $extraKosten; 
                         if ($extraKosten > 0) {
                             echo " (+ €$extraKosten $extraMsg)</p>";
                         }
+                        
+                        */
                 ?>
             </div>
         </main>

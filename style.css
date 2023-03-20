@@ -68,7 +68,21 @@ main {
 }
 
 .header2 {
-    color:white;
+    text-align:left;
+    margin:auto;
+    padding:10px;
+    height:40px;
+    background-color:rgb(255, 255, 255);
+    border-style:solid;
+
+    border-bottom-style:solid;
+    border-bottom-color: black;
+
+    border-top-style:hidden;
+    border-right-style:hidden;
+    border-left-style:hidden;
+    border-width:3px;
+    color:black;
 }
 
 .column1 {
@@ -159,6 +173,11 @@ main {
     float: right;
 }
 
+.gegevens {
+    color:black;
+    font-size: 20px;
+    background-color:white;
+}
 
 
 
