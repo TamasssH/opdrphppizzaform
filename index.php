@@ -77,7 +77,7 @@
         <title>Pizzaria di sog</title>
         <meta charset="UTF-8">
         <meta  name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css?t=90"> 
+        <link rel="stylesheet" type="text/css" href="style.css?t=77"> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">   
@@ -150,31 +150,31 @@
                     <input class="textinput" type="text" name="fname" value="<?php if(isset($_POST['fname'])) echo htmlspecialchars($_POST['fname']); ?>"/>
                     <p>Uw achternaam:</p>
                     <input class="textinput" type="text" name="lname" value="<?php if(isset($_POST['lname'])) echo htmlspecialchars($_POST['lname']); ?>"/>
-                    <p>Uw adres:</p>
+                    <p><span class="errorMsg">* <?php echo $adresErr; ?></span><br>Uw adres: </p>
                     <input class="textinput" type="text" name="adres" value="<?php if(isset($_POST['adres'])) echo htmlspecialchars($_POST['adres']); ?>"/>
-                    <span class="errorMsg">* <?php echo $adresErr; ?></span><br />
-                    <p>Uw plaatsnaam:</p>
+                    <p><span class="errorMsg">* <?php echo $placeErr; ?></span><br>Uw plaatsnaam:</p>
                     <input class="textinput" type="text" name="place" value="<?PHP if(isset($_POST['place'])) echo htmlspecialchars($_POST['place']); ?>"/>
-                    <span class="errorMsg">* <?php echo $placeErr; ?></span><br />
-                    <p>Uw postcode:</p>
+                    <p><span class="errorMsg">* <?php echo $postcodeErr; ?></span><br>Uw postcode:</p>
                     <input class="textinput" type="text" name="postcode" value="<?PHP if(isset($_POST['postcode'])) echo htmlspecialchars($_POST['postcode']); ?>"/>
-                    <span class="errorMsg">* <?php echo $postcodeErr; ?></span><br />
-                    <p>Uw besteldatum: </p>
+                    <p> <span class="errorMsg">* <?php echo $dateErr; ?></span><br>Uw besteldatum: </p>
                     <input class="textinput" type="date" name="date" min="<?php echo date("Y-m-d"); ?>" value="<?php if(isset($_POST["date"])) echo htmlspecialchars($_POST["date"]); ?>"/>
-                    <span class="errorMsg">* <?php echo $dateErr; ?></span>
                     <p>Uw besteltijd:</p> 
                     <input class="textinput" type="time" name="time" value="<?php if(isset($_POST['time'])) echo htmlspecialchars($_POST['time']); ?>"/>
                     <br>
-                    <p>Kies tussen bezorgen of ophalen: </p>
-                    <select name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
-                        <option value="none" selected>Kies een optie.</option>
-                        <option value="Afhalen" >Afhalen.</option>
-                        <option value="bezorgen">Laten bezorgen.</option>
-                    </select>
-                    <input type="submit" name="submit" value="Bestelling plaatsen"/>
-                    <span class="errorMsg">* <?php echo $choiceErr; ?></span>
+                    <div class="bezorgButton">
+                        <p>Kies tussen bezorgen of ophalen: </p>
+                        <select class="choiceButton" name="choice" value="<?php if(isset($_POST['choice'])) echo htmlspecialchars($_POST['choice']); ?>" required>
+                            <option class="options" value="none" selected>Kies een optie.</option>
+                            <option class="options" value="Afhalen" >Afhalen.</option>
+                            <option class="options" value="bezorgen">Laten bezorgen.</option>
+                        </select>
+                        <input class="submitbutton" type="submit" name="submit" value="Bestelling plaatsen"/>
+                        <br></br>
+                        <span class="errorMsg">* <?php echo $choiceErr; ?></span>
+                    </div>
                 </div>
             </form>
+            <br></br>
             <div class="gegevens">
                 <!-- De gegevens van de user uitprinten. -->
                 <h2 class="title2">Uw gegevens</h2>

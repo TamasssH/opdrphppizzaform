@@ -6,10 +6,15 @@ body {
 
 .errorMsg{
     color:red;
+    background-color:rgba(250, 235, 215, 0.5);
+    padding:3px;
 }
 
 .dailyMsg{
     color:green;
+    background-color:antiquewhite;
+    padding:3px;
+    border-radius:5px;
 }
 
 .form{
@@ -42,12 +47,21 @@ main {
     width:50%;
     color: white;
     font-size: 20px;
+    
 }
 
 .textinput {
+    background-color:antiquewhite;
     width:500px;
     height:30px;
     text-align: center;
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.5);
+    border-bottom-style:solid;
+    border-bottom-color:black;
+
+    border-top-style:none;
+    border-left-style:none;
+    border-right-style:none;
 }
 
 .title {
@@ -66,11 +80,12 @@ main {
     margin:auto;
     padding:10px;
     height:40px;
-    background-color:rgb(255, 255, 255);
-    border-style:solid;
+    background-color:antiquewhite;
 
     border-bottom-style:solid;
     border-bottom-color: black;
+    box-shadow: 0px 5px 2px 1px rgba(0, 0, 0, 0.5);
+    border-radius:3px;
 
     border-top-style:hidden;
     border-right-style:hidden;
@@ -194,8 +209,46 @@ main {
 }
 
 footer {
-    background-color: black;
-    color:white;
-    height:100px;
+    text-align:left;
+    float:bottom;
+    height: 60px;
+    overflow: hidden;
+    background-color:antiquewhite;
+    color:black;
     padding:50x;
+    border-radius: 3px;
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.submitbutton {
+    background-color:antiquewhite;
+    font-size:20px;
+    text-align:left;
+    width:fit-content;
+    height:50px;
+    border-radius:3px;
+    border:none;
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.5);
+}
+
+.choiceButton {
+    background-color:antiquewhite;
+    font-size:20px;
+    text-align:left;
+    width:fit-content;
+    height:50px;
+    border:none;
+    box-shadow: 5px 5px 2px 1px rgba(0, 0, 0, 0.5);
+}
+.options {
+    background-color:antiquewhite;
+    font-size:20px;
+    text-align:left;
+    width:fit-content;
+    height:50px;
+    border:none;
+}
+
+.bezorgButton {
+
 }
