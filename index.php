@@ -77,7 +77,7 @@
         <title>Pizzaria di sog</title>
         <meta charset="UTF-8">
         <meta  name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css?t=17"> 
+        <link rel="stylesheet" type="text/css" href="style.css?t=40"> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">   
@@ -189,7 +189,7 @@
                 </p>     
                 <br>
                 <h2 class="title2">Uw bestelde pizza's</h2>
-                    <?php 
+                    <?php  
                         //check voor welke dag het is en bereken de korting uit.
                         //check voor maandag en doe de hoeveelheid pizza's * €7.50
                         if (array_sum($pizzas) > 0) {
@@ -211,7 +211,7 @@
                                         echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
                                         $pizzas[$i] *= $pizzaPrices[$i];
                                         array_push($totalPrice,$pizzas[$i]);
-                                        echo "€".$pizzas[$i]."</p>";
+                                        echo " €".$pizzas[$i]."</p>";
                                     }
                                     if (array_sum($totalPrice) > 20) {
                                         $totalPrice[$i] /= 100 * 15;
@@ -224,7 +224,7 @@
                                     if ($pizzas[$i] > 0) {
                                         echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
                                         $pizzas[$i] *= $pizzaPrices[$i];
-                                        echo  "€".$pizzas[$i]."</p>";
+                                        echo  " €".$pizzas[$i]."</p>";
                                         array_push($totalPrice,$pizzas[$i]);
                                     }   
                                 }  
