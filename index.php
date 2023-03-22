@@ -77,7 +77,7 @@
         <title>Pizzaria di sog</title>
         <meta charset="UTF-8">
         <meta  name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css?t=77"> 
+        <link rel="stylesheet" type="text/css" href="style.css?t=17"> 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap" rel="stylesheet">   
@@ -93,7 +93,7 @@
                     <span class="errorMsg">* <?php echo $pizzaErr; ?></span><br />
                     <div class="pizzaLijst">      
                         <div class="column1">
-                            <img src="resources/margherita.jpg" alt="pizza margherita" width="250" height="250">
+                            <img class="pizzaImg" src="resources/margherita.jpg" alt="pizza margherita" width="250" height="250">
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
                                 id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
@@ -103,7 +103,7 @@
                             <input class="inputfield" type="number" name="pMargherita" min="0" max="10" value="<?php echo $pMargherita; ?>">
                         </div>
                         <div class="column2">
-                            <img src="resources/funghi.png" alt="pizza funghi" width="250" height="250">
+                            <img class="pizzaImg" src="resources/funghi.png" alt="pizza funghi" width="250" height="250">
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
                                 id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
@@ -113,7 +113,7 @@
                             <input class="inputfield" type="number" name="pFunghi" min="0" max="10" value="<?php echo $pFunghi; ?>">
                         </div>
                         <div class="column3">
-                            <img src="resources/marina.jpg" alt="pizza marina" width="250" height="250">
+                            <img class="pizzaImg" src="resources/marina.jpg" alt="pizza marina" width="250" height="250">
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
                                 id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
@@ -123,7 +123,7 @@
                             <input class="inputfield" type="number" name="pMarina" min="0" max="10" value="<?php echo $pMarina; ?>">
                         </div>
                         <div class="column4">
-                            <img src="resources/Quattro_formaggi.png" alt="pizza quattro formaggi" width="250" height="250">
+                            <img class="pizzaImg" src="resources/Quattro_formaggi.png" alt="pizza quattro formaggi" width="250" height="250">
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
                                 id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
@@ -133,7 +133,7 @@
                             <input class="inputfield" type="number" name="pQuattro" min="0" max="10" value="<?php echo $pQuattro ?>">
                         </div>
                         <div class="column5">
-                            <img src="resources/hawaii.jpg" alt="pizza hawaii" width="250" height="250">
+                            <img class="pizzaImg" src="resources/hawaii.jpg" alt="pizza hawaii" width="250" height="250">
                             <p>
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer luctus cursus libero, 
                                 id gravida neque rhoncus in. In nisl purus, faucibus quis ullamcorper sit amet. Lorem ipsum 
@@ -179,12 +179,12 @@
                 <!-- De gegevens van de user uitprinten. -->
                 <h2 class="title2">Uw gegevens</h2>
                 <p id="info">
-                    <?php echo "Uw voornaam: $fname "; ?><br>
-                    <?php echo "Uw achternaam: $lname"; ?><br>
-                    <?php echo "Uw adres: $adres"; ?><br>
-                    <?php echo "Uw plaats naam: $place"; ?><br>
-                    <?php echo "Uw postcode: $postcode"; ?><br>
-                    <?php echo "Uw bestel datum: $date om $time"; ?><br>
+                    <?php echo "Uw voornaam: $fname "; ?><br><br>
+                    <?php echo "Uw achternaam: $lname"; ?><br><br>
+                    <?php echo "Uw adres: $adres"; ?><br><br>
+                    <?php echo "Uw plaats naam: $place"; ?><br><br>
+                    <?php echo "Uw postcode: $postcode"; ?><br><br>
+                    <?php echo "Uw bestel datum: $date om $time"; ?><br><br>
                     <?php echo "Uw bestelling keuze: $choice"; ?><br>
                 </p>     
                 <br>
@@ -240,7 +240,7 @@
             </div>
         </main>
         <footer>
-            <p>©Copyright 2023 by Mr Sogga. All rights reversed.</p>
+            <p>©Copyright 2023 by Mr sog. All rights reversed.</p>
         </footer>
     </body>
 </html>
