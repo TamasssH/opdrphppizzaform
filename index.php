@@ -68,6 +68,8 @@
             $dailyMsg = "Het is pizza actie dag. alle pizza's nu voor maar €7.50!";
         }else if ($day == "Fri") {
             $dailyMsg = "Het is pizza start weekend dag. Alle bestelling boven de €20 krijgen 15% korting!";     
+        }else {
+            $dailyMsg = "Er zijn helaas geen acties deze dag.";
         }
     }
 ?>
@@ -209,10 +211,12 @@
                                 for ($i=0;count($pizzas)>$i;$i++) {
                                     if ($pizzas[$i] > 0) {
                                         echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                                        //prijs berekenen
                                         $pizzas[$i] *= $pizzaPrices[$i];
                                         array_push($totalPrice,$pizzas[$i]);
                                         echo " €".$pizzas[$i]."</p>";
                                     }
+                                    //check voor als de prijs boven de €20 is. 15% van de prijs er van af
                                     if (array_sum($totalPrice) > 20) {
                                         $totalPrice[$i] /= 100 * 15;
                                     }
@@ -223,13 +227,14 @@
                                 for ($i=0;count($pizzas)>$i;$i++) {
                                     if ($pizzas[$i] > 0) {
                                         echo "<p>".$pizzas[$i]."x ".$pizzaNames[$i];
+                                        //prijs berekenen
                                         $pizzas[$i] *= $pizzaPrices[$i];
                                         echo  " €".$pizzas[$i]."</p>";
                                         array_push($totalPrice,$pizzas[$i]);
                                     }   
                                 }  
                             }
-                            //print het totaal bedrag uit en de extra bezorg kosten.
+                            //print het totaal bedrag uit en de extra bezorg kosten als je gekozen hebt voor bezorgen.
                             $totaalBedrag  = array_sum($totalPrice);
                                 echo "<p>Uw totaal bedrag: €".$totaalBedrag + $extraKosten; 
                                 if ($extraKosten > 0) {
