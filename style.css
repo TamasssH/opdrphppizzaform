@@ -210,7 +210,8 @@ footer {
 
 .submitbutton:hover {
     background-color:white;
-    border-radius:10px;
+    transition: transform .2s; 
+    transform: scale(1.1);
 }
 
 .choiceButton {
@@ -225,7 +226,8 @@ footer {
 
 .choiceButton:hover {
     background-color:white;
-    border-radius:10px;
+    transition: transform .2s; 
+    transform: scale(1.1);
 }
 
 .options {
