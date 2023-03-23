@@ -18,6 +18,14 @@
         $data = htmlspecialchars($data);
         return $data;
     }
+    //Display een message gebasseerd op welke dag het is.
+    if ($day == "Mon") {
+        $dailyMsg = "Het is pizza actie dag. alle pizza's nu voor maar €7.50!";
+    }else if ($day == "Fri") {
+        $dailyMsg = "Het is pizza start weekend dag. Alle bestelling boven de €20 krijgen 15% korting!";     
+    }else {
+        $dailyMsg = "Er zijn geen acties op dit moment.";
+    }
     /*check voor als de post method word gebruikt
     en als die wordt gebruikt dan excuteer de 
     test_input function zodat de data geen speciale characters bevat.
@@ -63,13 +71,6 @@
         //check voor als alle hoeveelheden van de verschillende pizza's niet 0 zijn, want dat betekent dat er niks besteld is.
         if (array_sum($pizzas) == 0) {
             $pizzaErr = "Je moet tenminste 1 pizza bestellen!";
-        }
-        if ($day == "Mon") {
-            $dailyMsg = "Het is pizza actie dag. alle pizza's nu voor maar €7.50!";
-        }else if ($day == "Fri") {
-            $dailyMsg = "Het is pizza start weekend dag. Alle bestelling boven de €20 krijgen 15% korting!";     
-        }else {
-            $dailyMsg = "Er zijn helaas geen acties deze dag.";
         }
     }
 ?>
