@@ -52,8 +52,9 @@
         array_push($pizzas, $pMargherita,$pFunghi,$pMarina,$pHawai,$pQuattro);
         if (!$fname || !$lname){
             $nameErr = "Vul uw naam en achternaam in alstublieft.";
-        }else if (!preg_match("/^[a-zA-Z-' ]*$/",$fname) || !preg_match("/^[a-zA-Z-' ]*$/",$lname)) {
-            $nameErr = "alleen letters en wit regels toegestaan!";
+        }
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$fname) || !preg_match("/^[a-zA-Z-' ]*$/",$lname) || !preg_match("/^[a-zA-Z-' ]*$/",$adres) || !preg_match("/^[a-zA-Z-' ]*$/",$place) || !preg_match("/^[a-zA-Z-' ]*$/",$postcode)) {
+            $nameErr = "Alleen letters en wit regels toegestaan!";
         }
         $adresErr = !$adres ? "Vul uw adres in alstublieft" : "";
         $placeErr = !$place ? "Vul uw plaatsnaam in alstublieft" : "";
