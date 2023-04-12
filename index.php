@@ -53,7 +53,7 @@
         if (!$fname || !$lname){
             $nameErr = "Vul uw naam en achternaam in alstublieft.";
         }
-        if (!preg_match("/^[a-zA-Z-' ]*$/",$fname) || !preg_match("/^[a-zA-Z-' ]*$/",$lname) || !preg_match("/^[a-zA-Z-' ]*$/",$adres) || !preg_match("/^[a-zA-Z-' ]*$/",$place) || !preg_match("/^[a-zA-Z-' ]*$/",$postcode)) {
+        if (!preg_match("/^[a-zA-Z-' ]*$/",$fname) || !preg_match("/^[a-zA-Z-' ]*$/",$lname)) {
             $nameErr = "Alleen letters en wit regels toegestaan!";
         }
         $adresErr = !$adres ? "Vul uw adres in alstublieft" : "";
@@ -242,6 +242,8 @@
                                 if ($extraKosten > 0) {
                                     echo " (+ €$extraKosten $extraMsg)</p>";
                                 }
+                        }else {
+                            $pizzaErr = "Je moet tenminste 1 pizza bestellen!";
                         }
                     ?>
             </div>
